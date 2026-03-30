@@ -22,6 +22,9 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
+    photo: '',
+    intro: '신랑 소개글을 입력해주세요.',
+    playlist: '',
   },
   bride: {
     name: '임찬희',
@@ -44,6 +47,8 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
+    photo: '',
+    intro: '신부 소개글을 입력해주세요.',
   },
 
   wedding: {

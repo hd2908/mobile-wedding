@@ -5,8 +5,9 @@ import { config } from '../config';
 import '../styles/Cover.css';
 
 export default function Cover() {
-  const { groom, bride, wedding, greeting } = config;
+  const { groom, bride, wedding } = config;
   const [showDim, setShowDim] = useState(true);
+  const [activeTab, setActiveTab] = useState<'groom' | 'bride'>('groom');
   const heroRef = useRef<HTMLElement>(null);
   const [greetingRef, greetingInView] = useInView({ triggerOnce: true, threshold: 0.2 });
 
@@ -129,10 +130,10 @@ export default function Cover() {
         </AnimatePresence>
       </div>
 
-      {/* Greeting area - flows after cover */}
-      <div className="hero__greeting" ref={greetingRef}>
+      {/* Invitation area - profile tabs */}
+      <div className="hero__invitation" ref={greetingRef}>
         <motion.p
-          className="hero__greeting-title"
+          className="hero__invitation-title"
           initial={{ opacity: 0, y: 20 }}
           animate={greetingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
@@ -142,41 +143,84 @@ export default function Cover() {
 
         <div className="hero__rule" />
 
-        <motion.p
-          className="hero__greeting-message"
+        <motion.div
+          className="hero__tabs"
           initial={{ opacity: 0, y: 20 }}
           animate={greetingInView ? { opacity: 1, y: 0 } : {}}
           transition={{ delay: 0.3, duration: 0.8 }}
         >
-          {greeting.split('\n').map((line, i) => (
-            <span key={i}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </motion.p>
-
-        <div className="hero__rule" />
-
-        <motion.div
-          className="hero__parents"
-          initial={{ opacity: 0, y: 20 }}
-          animate={greetingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.6, duration: 0.8 }}
-        >
-          <div className="hero__parents-row">
-            <span className="hero__parents-names">
-              {groom.father} · {groom.mother}
-            </span>
-            <span className="hero__parents-relation">의 아들 {groom.name}</span>
-          </div>
-          <div className="hero__parents-row">
-            <span className="hero__parents-names">
-              {bride.father} · {bride.mother}
-            </span>
-            <span className="hero__parents-relation">의 딸 {bride.name}</span>
-          </div>
+          <button
+            className={`hero__tab ${activeTab === 'groom' ? 'hero__tab--active' : ''}`}
+            onClick={() => setActiveTab('groom')}
+          >
+            신랑
+          </button>
+          <button
+            className={`hero__tab ${activeTab === 'bride' ? 'hero__tab--active' : ''}`}
+            onClick={() => setActiveTab('bride')}
+          >
+            신부
+          </button>
         </motion.div>
+
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeTab}
+            className="hero__profile"
+            initial={{ opacity: 0, x: activeTab === 'groom' ? -20 : 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: activeTab === 'groom' ? 20 : -20 }}
+            transition={{ duration: 0.3 }}
+          >
+            {(() => {
+              const person = activeTab === 'groom' ? groom : bride;
+              const role = activeTab === 'groom' ? '아들' : '딸';
+              return (
+                <>
+                  <div className="hero__profile-photo">
+                    {person.photo ? (
+                      <img src={person.photo} alt={person.name} />
+                    ) : (
+                      <div className="hero__profile-photo-placeholder" />
+                    )}
+                  </div>
+
+                  <h3 className="hero__profile-name">{person.name}</h3>
+
+                  <p className="hero__profile-parents">
+                    {person.father} · {person.mother}
+                    <span>의 {role}</span>
+                  </p>
+
+                  <div className="hero__rule hero__rule--short" />
+
+                  <p className="hero__profile-intro">
+                    {person.intro.split('\n').map((line, i) => (
+                      <span key={i}>
+                        {line}
+                        <br />
+                      </span>
+                    ))}
+                  </p>
+
+                  {activeTab === 'groom' && groom.playlist && (
+                    <a
+                      href={groom.playlist}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="hero__profile-playlist"
+                    >
+                      신랑의 플레이리스트
+                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
+                      </svg>
+                    </a>
+                  )}
+                </>
+              );
+            })()}
+          </motion.div>
+        </AnimatePresence>
       </div>
     </section>
   );
