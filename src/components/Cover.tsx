@@ -76,16 +76,18 @@ export default function Cover() {
   // Exit:   0.78 ~ 0.88
 
   // Cover layer (transparent bg, SVG shows through)
-  const coverOpacity = useTransform(scrollYProgress, [0, 0.16, 0.22], [1, 1, 0]);
+  // Stays visible until groom is fully opaque, then drops
+  const coverOpacity = useTransform(scrollYProgress, [0, 0.16, 0.26, 0.28], [1, 1, 1, 0]);
 
   // SVG lines
   const pathProgress = useTransform(scrollYProgress, [0, 0.18], [0, 1]);
   const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.16, 0.22], [0.2, 0.6, 0.6, 0]);
 
-  // Groom layer (white bg, fully covers cover content)
-  const groomOpacity = useTransform(scrollYProgress, [0.20, 0.26, 0.44, 0.50], [0, 1, 1, 0]);
+  // Groom layer (white bg)
+  // Stays at 1 until bride is fully opaque at 0.54, then drops
+  const groomOpacity = useTransform(scrollYProgress, [0.20, 0.26, 0.54, 0.56], [0, 1, 1, 0]);
 
-  // Bride layer (white bg, fully covers groom)
+  // Bride layer (white bg, on top)
   const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.76, 0.84], [0, 1, 1, 0]);
 
   useEffect(() => {
