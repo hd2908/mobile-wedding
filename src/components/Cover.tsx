@@ -67,26 +67,26 @@ export default function Cover() {
   });
 
   // 600vh total, offset ['start start', 'end end'] = 500vh of scroll
-  // Phase 1: Cover      0 ~ 0.20  (100vh viewing)
-  // Phase 2: Groom      0.24 ~ 0.48 (120vh viewing)
-  // Phase 3: Bride      0.52 ~ 0.80 (140vh viewing)
-  // Phase 4: Fade out   0.80 ~ 0.90
+  // Phase 1: Cover + SVG draw  0 ~ 0.30  (150vh - SVG 완성까지)
+  // Phase 2: Groom             0.32 ~ 0.55 (115vh viewing)
+  // Phase 3: Bride             0.58 ~ 0.82 (120vh viewing)
+  // Phase 4: Fade out          0.82 ~ 0.92
 
-  // Cover content
-  const coverOpacity = useTransform(scrollYProgress, [0, 0.16, 0.22], [1, 1, 0]);
+  // Cover content - stays while SVG draws
+  const coverOpacity = useTransform(scrollYProgress, [0, 0.22, 0.3], [1, 1, 0]);
 
-  // SVG lines
-  const pathProgress = useTransform(scrollYProgress, [0, 0.55], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.05, 0.65, 0.85], [0.2, 0.6, 0.6, 0]);
+  // SVG lines - fully drawn by 0.30, then stays, fades at end
+  const pathProgress = useTransform(scrollYProgress, [0, 0.28], [0, 1]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.05, 0.7, 0.88], [0.2, 0.6, 0.6, 0]);
 
-  // Invitation title
-  const titleOpacity = useTransform(scrollYProgress, [0.18, 0.26, 0.82, 0.88], [0, 1, 1, 0]);
+  // Invitation title - appears after SVG completes
+  const titleOpacity = useTransform(scrollYProgress, [0.28, 0.34, 0.84, 0.9], [0, 1, 1, 0]);
 
-  // Groom profile
-  const groomOpacity = useTransform(scrollYProgress, [0.2, 0.26, 0.44, 0.5], [0, 1, 1, 0]);
+  // Groom profile - appears after SVG fully drawn
+  const groomOpacity = useTransform(scrollYProgress, [0.3, 0.36, 0.5, 0.56], [0, 1, 1, 0]);
 
   // Bride profile
-  const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.78, 0.86], [0, 1, 1, 0]);
+  const brideOpacity = useTransform(scrollYProgress, [0.54, 0.6, 0.78, 0.86], [0, 1, 1, 0]);
 
   useEffect(() => {
     const handleScroll = () => {
