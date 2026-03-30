@@ -1,15 +1,13 @@
 :root {
-  --color-bg: #f5f0eb;
-  --color-bg-section: #ffffff;
-  --color-primary: #c9a96e;
-  --color-primary-light: #e8d5b0;
-  --color-text: #3a3a3a;
-  --color-text-light: #888888;
-  --color-text-muted: #b0a898;
-  --color-border: #e8e0d8;
-  --color-accent: #d4a574;
-  --font-serif: 'Noto Serif KR', 'Gowun Batang', serif;
-  --font-body: 'Gowun Batang', 'Noto Serif KR', serif;
+  --color-bg: #ffffff;
+  --color-bg-cover: #000000;
+  --color-text: #000000;
+  --color-text-light: #555555;
+  --color-text-muted: #999999;
+  --color-border: #000000;
+  --color-border-light: #e0e0e0;
+  --font-sans: 'Helvetica Neue', Helvetica, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-kr: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --max-width: 480px;
 }
 
@@ -28,10 +26,10 @@ html {
 }
 
 body {
-  font-family: var(--font-body);
+  font-family: var(--font-sans), var(--font-kr);
   color: var(--color-text);
   background-color: var(--color-bg);
-  line-height: 1.8;
+  line-height: 1.6;
   overflow-x: hidden;
   margin: 0;
 }

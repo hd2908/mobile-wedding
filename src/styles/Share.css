@@ -1,33 +1,25 @@
 .share {
   width: 100%;
   max-width: var(--max-width);
-  padding: 80px 24px 120px;
-  background: var(--color-bg-section);
+  padding: 80px 32px 120px;
+  background: var(--color-bg);
   text-align: center;
 }
 
-.share__divider {
-  width: 1px;
-  height: 40px;
-  background: var(--color-primary-light);
-  margin: 0 auto 32px;
-}
-
 .share__title {
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 4px;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  color: var(--color-primary);
-  margin-bottom: 12px;
+  color: var(--color-text);
+  margin-bottom: 32px;
 }
 
-.share__message {
-  font-size: 0.8rem;
-  color: var(--color-text-light);
+.share__rule {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
   margin-bottom: 32px;
-  line-height: 1.8;
 }
 
 .share__buttons {
@@ -41,12 +33,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
   width: 240px;
   padding: 14px 24px;
-  border-radius: 28px;
-  font-size: 0.8rem;
-  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 1px;
   transition: all 0.3s ease;
 }
 
@@ -56,44 +47,43 @@
 }
 
 .share__btn--kakao:hover {
-  opacity: 0.9;
+  opacity: 0.85;
 }
 
 .share__btn--copy {
   border: 1px solid var(--color-border);
-  color: var(--color-text-light);
+  color: var(--color-text);
 }
 
 .share__btn--copy:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .share__footer {
   margin-top: 60px;
-  padding-top: 40px;
-  border-top: 1px solid var(--color-border);
+}
+
+.share__footer-rule {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: 32px;
 }
 
 .share__footer-names {
-  font-family: var(--font-serif);
   font-size: 1rem;
   font-weight: 300;
+  letter-spacing: 4px;
   color: var(--color-text);
-  letter-spacing: 2px;
-}
-
-.share__footer-names span {
-  color: var(--color-primary);
-  margin: 0 8px;
-  font-size: 0.8rem;
 }
 
 .share__footer-date {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 300;
   color: var(--color-text-muted);
   margin-top: 8px;
-  letter-spacing: 1px;
+  letter-spacing: 2px;
 }
 
 .share__toast {
@@ -102,10 +92,9 @@
   left: 50%;
   transform: translateX(-50%);
   padding: 12px 24px;
-  background: rgba(58, 58, 58, 0.9);
-  color: white;
-  border-radius: 24px;
-  font-size: 0.8rem;
+  background: var(--color-text);
+  color: var(--color-bg);
+  font-size: 0.75rem;
+  letter-spacing: 1px;
   z-index: 9999;
-  backdrop-filter: blur(4px);
 }

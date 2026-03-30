@@ -10,7 +10,7 @@ interface AccountInfo {
   holder: string;
 }
 
-function AccountItem({ account }: { account: AccountInfo }) {
+function AccountItem({ account, kakaopay }: { account: AccountInfo; kakaopay?: string }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -37,17 +37,37 @@ function AccountItem({ account }: { account: AccountInfo }) {
         <span className="account__number">{account.number}</span>
         <span className="account__holder">{account.holder}</span>
       </div>
-      <button
-        className={`account__copy-btn ${copied ? 'account__copy-btn--copied' : ''}`}
-        onClick={handleCopy}
-      >
-        {copied ? '복사완료' : '복사하기'}
-      </button>
+      <div className="account__actions">
+        <button
+          className={`account__copy-btn ${copied ? 'account__copy-btn--copied' : ''}`}
+          onClick={handleCopy}
+        >
+          {copied ? '복사완료' : '복사'}
+        </button>
+        {kakaopay && (
+          <a
+            href={kakaopay}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="account__kakao-btn"
+          >
+            카카오페이
+          </a>
+        )}
+      </div>
     </div>
   );
 }
 
-function AccountGroup({ label, accounts }: { label: string; accounts: AccountInfo[] }) {
+function AccountGroup({
+  label,
+  accounts,
+  kakaopay,
+}: {
+  label: string;
+  accounts: AccountInfo[];
+  kakaopay?: string;
+}) {
   const [open, setOpen] = useState(false);
 
   return (
@@ -68,7 +88,7 @@ function AccountGroup({ label, accounts }: { label: string; accounts: AccountInf
             transition={{ duration: 0.3 }}
           >
             {accounts.map((acc, i) => (
-              <AccountItem key={i} account={acc} />
+              <AccountItem key={i} account={acc} kakaopay={i === 0 ? kakaopay : undefined} />
             ))}
           </motion.div>
         )}
@@ -86,7 +106,6 @@ export default function Account() {
 
   return (
     <section className="account" ref={ref}>
-      <div className="account__divider" />
       <motion.p
         className="account__title"
         initial={{ opacity: 0, y: 20 }}
@@ -95,6 +114,8 @@ export default function Account() {
       >
         Gift
       </motion.p>
+
+      <div className="account__rule" />
 
       <motion.p
         className="account__subtitle"
@@ -110,8 +131,16 @@ export default function Account() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ delay: 0.5, duration: 0.8 }}
       >
-        <AccountGroup label="신랑측 계좌번호" accounts={groomAccounts} />
-        <AccountGroup label="신부측 계좌번호" accounts={brideAccounts} />
+        <AccountGroup
+          label="신랑측 계좌번호"
+          accounts={groomAccounts}
+          kakaopay={groom.kakaopay || undefined}
+        />
+        <AccountGroup
+          label="신부측 계좌번호"
+          accounts={brideAccounts}
+          kakaopay={bride.kakaopay || undefined}
+        />
       </motion.div>
     </section>
   );

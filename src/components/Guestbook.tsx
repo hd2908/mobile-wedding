@@ -70,7 +70,6 @@ export default function Guestbook() {
 
   return (
     <section className="guestbook" ref={ref}>
-      <div className="guestbook__divider" />
       <motion.p
         className="guestbook__title"
         initial={{ opacity: 0, y: 20 }}

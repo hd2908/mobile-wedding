@@ -1,85 +1,95 @@
-// 청첩장 데이터 설정 - 디자인/기획 확정 후 이 파일만 수정하면 됩니다
+// 청첩장 데이터 설정 - 이 파일만 수정하면 됩니다
 
 export const config = {
-  // 신랑 & 신부 정보
   groom: {
-    name: '김신랑',
-    englishName: 'Groom',
-    father: '김아버지',
-    mother: '김어머니',
-    phone: '010-1234-5678',
+    name: '임희도',
+    father: '아버지 성함',
+    mother: '어머니 성함',
+    phone: '010-0000-0000',
     account: {
-      bank: '국민은행',
-      number: '123-456-789012',
-      holder: '김신랑',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '임희도',
     },
     fatherAccount: {
-      bank: '신한은행',
-      number: '110-123-456789',
-      holder: '김아버지',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '아버지 성함',
     },
     motherAccount: {
-      bank: '우리은행',
-      number: '1002-123-456789',
-      holder: '김어머니',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '어머니 성함',
     },
+    kakaopay: '',
   },
   bride: {
-    name: '이신부',
-    englishName: 'Bride',
-    father: '이아버지',
-    mother: '이어머니',
-    phone: '010-9876-5432',
+    name: '임찬희',
+    father: '아버지 성함',
+    mother: '어머니 성함',
+    phone: '010-0000-0000',
     account: {
-      bank: '카카오뱅크',
-      number: '3333-12-3456789',
-      holder: '이신부',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '임찬희',
     },
     fatherAccount: {
-      bank: '하나은행',
-      number: '123-456789-01234',
-      holder: '이아버지',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '아버지 성함',
     },
     motherAccount: {
-      bank: '농협은행',
-      number: '302-1234-5678-01',
-      holder: '이어머니',
+      bank: '은행명',
+      number: '000-000-000000',
+      holder: '어머니 성함',
     },
+    kakaopay: '',
   },
 
-  // 결혼식 정보
   wedding: {
-    date: '2025-11-15',
-    time: '14:00',
-    dayOfWeek: '토요일',
-    venue: '더채플앳청담',
-    hall: '그랜드볼룸 3층',
-    address: '서울특별시 강남구 청담동 123-45',
-    lat: 37.5246,
-    lng: 127.0478,
+    date: '2026-08-02',
+    dateDisplay: '2026년 08월 02일 일요일 오전 11시',
+    time: '11:00',
+    dayOfWeek: '일요일',
+    venue: '삼성전자 서초사옥',
+    hall: '',
+    address: '서울특별시 서초구 서초대로74길 11',
+    lat: 37.4953,
+    lng: 127.0135,
   },
 
-  // 인사말
-  greeting: `서로 다른 길을 걸어온 두 사람이\n같은 곳을 바라보며\n함께 걸어가려 합니다.\n\n소중한 분들을 모시고\n사랑의 약속을 하려 합니다.\n\n바쁘시더라도 오셔서\n축복해 주시면 감사하겠습니다.`,
+  greeting: `인사말을 입력해주세요.`,
 
-  // 갤러리 이미지 (플레이스홀더)
   gallery: [
     { id: 1, src: '', alt: '웨딩 사진 1' },
     { id: 2, src: '', alt: '웨딩 사진 2' },
     { id: 3, src: '', alt: '웨딩 사진 3' },
     { id: 4, src: '', alt: '웨딩 사진 4' },
     { id: 5, src: '', alt: '웨딩 사진 5' },
+    { id: 6, src: '', alt: '웨딩 사진 6' },
+    { id: 7, src: '', alt: '웨딩 사진 7' },
+    { id: 8, src: '', alt: '웨딩 사진 8' },
+    { id: 9, src: '', alt: '웨딩 사진 9' },
   ],
 
-  // 교통 안내
+  menu: {
+    western: [
+      '메뉴 항목 1',
+      '메뉴 항목 2',
+      '메뉴 항목 3',
+    ],
+    chinese: [
+      '메뉴 항목 1',
+      '메뉴 항목 2',
+      '메뉴 항목 3',
+    ],
+  },
+
   transport: [
-    { label: '지하철', description: '2호선 청담역 3번 출구 도보 5분' },
-    { label: '버스', description: '472, 3422번 청담사거리 하차' },
-    { label: '주차', description: '건물 지하주차장 이용 (2시간 무료)' },
+    { label: '지하철', description: '교통 안내를 입력해주세요' },
   ],
 
-  // 카카오톡 공유
   kakao: {
-    jsKey: '', // 카카오 JavaScript 키
+    jsKey: '',
   },
 } as const;
