@@ -5,7 +5,7 @@ import '../styles/Cover.css';
 
 type Person = typeof config.groom | typeof config.bride;
 
-function ProfileCard({
+function ProfileLayer({
   person,
   role,
   opacity,
@@ -17,41 +17,44 @@ function ProfileCard({
   playlist?: string;
 }) {
   return (
-    <motion.div className="hero__profile" style={{ opacity }}>
-      <div className="hero__profile-photo">
-        {person.photo ? (
-          <img src={person.photo} alt={person.name} />
-        ) : (
-          <div className="hero__profile-photo-placeholder" />
+    <motion.div className="hero__layer" style={{ opacity }}>
+      <div className="hero__profile-inner">
+        <p className="hero__profile-label">소개</p>
+        <div className="hero__profile-photo">
+          {person.photo ? (
+            <img src={person.photo} alt={person.name} />
+          ) : (
+            <div className="hero__profile-photo-placeholder" />
+          )}
+        </div>
+        <h3 className="hero__profile-name">{person.name}</h3>
+        <p className="hero__profile-parents">
+          {person.father} · {person.mother}
+          <span>의 {role}</span>
+        </p>
+        <div className="hero__profile-rule" />
+        <p className="hero__profile-intro">
+          {person.intro.split('\n').map((line, i) => (
+            <span key={i}>
+              {line}
+              <br />
+            </span>
+          ))}
+        </p>
+        {playlist && (
+          <a
+            href={playlist}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero__profile-playlist"
+          >
+            신랑의 플레이리스트
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
+            </svg>
+          </a>
         )}
       </div>
-      <h3 className="hero__profile-name">{person.name}</h3>
-      <p className="hero__profile-parents">
-        {person.father} · {person.mother}
-        <span>의 {role}</span>
-      </p>
-      <div className="hero__profile-rule" />
-      <p className="hero__profile-intro">
-        {person.intro.split('\n').map((line, i) => (
-          <span key={i}>
-            {line}
-            <br />
-          </span>
-        ))}
-      </p>
-      {playlist && (
-        <a
-          href={playlist}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="hero__profile-playlist"
-        >
-          신랑의 플레이리스트
-          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-            <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
-          </svg>
-        </a>
-      )}
     </motion.div>
   );
 }
@@ -66,27 +69,24 @@ export default function Cover() {
     offset: ['start start', 'end end'],
   });
 
-  // 800vh total, offset ['start start', 'end end'] = 700vh of scroll
-  // Phase 1: Cover + SVG   0 ~ 0.20  (140vh)
-  // Phase 2: Groom         0.22 ~ 0.48 (182vh viewing)
-  // Phase 3: Bride         0.50 ~ 0.78 (196vh viewing)
-  // Phase 4: Fade out      0.78 ~ 0.86
+  // 800vh total, 700vh of actual scroll
+  // Cover:  0 ~ 0.20  (140vh)
+  // Groom:  0.22 ~ 0.48  (182vh)
+  // Bride:  0.50 ~ 0.78  (196vh)
+  // Exit:   0.78 ~ 0.88
 
-  // Cover content
-  const coverOpacity = useTransform(scrollYProgress, [0, 0.15, 0.2], [1, 1, 0]);
+  // Cover layer (transparent bg, SVG shows through)
+  const coverOpacity = useTransform(scrollYProgress, [0, 0.16, 0.22], [1, 1, 0]);
 
-  // SVG lines - draw during cover, then completely hidden before profiles
+  // SVG lines
   const pathProgress = useTransform(scrollYProgress, [0, 0.18], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.16, 0.21], [0.2, 0.6, 0.6, 0]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.16, 0.22], [0.2, 0.6, 0.6, 0]);
 
-  // Invitation title
-  const titleOpacity = useTransform(scrollYProgress, [0.19, 0.24, 0.8, 0.84], [0, 1, 1, 0]);
+  // Groom layer (white bg, fully covers cover content)
+  const groomOpacity = useTransform(scrollYProgress, [0.20, 0.26, 0.44, 0.50], [0, 1, 1, 0]);
 
-  // Groom profile
-  const groomOpacity = useTransform(scrollYProgress, [0.2, 0.26, 0.44, 0.5], [0, 1, 1, 0]);
-
-  // Bride profile
-  const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.76, 0.82], [0, 1, 1, 0]);
+  // Bride layer (white bg, fully covers groom)
+  const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.76, 0.84], [0, 1, 1, 0]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -99,7 +99,7 @@ export default function Cover() {
   return (
     <div className="hero" ref={heroRef}>
       <div className="hero__sticky">
-        {/* SVG background */}
+        {/* SVG background - z-index 0 */}
         <svg
           className="hero__svg"
           viewBox="0 0 200 400"
@@ -135,36 +135,36 @@ export default function Cover() {
           />
         </svg>
 
-        {/* Cover content */}
-        <motion.div className="hero__cover-content" style={{ opacity: coverOpacity }}>
-          <p className="hero__date">{wedding.dateDisplay}</p>
-          <h1 className="hero__names">
-            <span className="hero__name">{groom.name}</span>
-            <span className="hero__amp">&</span>
-            <span className="hero__name">{bride.name}</span>
-          </h1>
-          <p className="hero__venue">{wedding.venue}</p>
+        {/* Layer 1: Cover (transparent bg, SVG visible behind) */}
+        <motion.div
+          className="hero__layer hero__layer--cover"
+          style={{ opacity: coverOpacity }}
+        >
+          <div className="hero__cover-content">
+            <p className="hero__date">{wedding.dateDisplay}</p>
+            <h1 className="hero__names">
+              <span className="hero__name">{groom.name}</span>
+              <span className="hero__amp">&</span>
+              <span className="hero__name">{bride.name}</span>
+            </h1>
+            <p className="hero__venue">{wedding.venue}</p>
+          </div>
         </motion.div>
 
-        {/* Invitation title */}
-        <motion.p className="hero__invitation-title" style={{ opacity: titleOpacity }}>
-          소개
-        </motion.p>
+        {/* Layer 2: Groom profile (white bg, covers everything behind) */}
+        <ProfileLayer
+          person={groom}
+          role="아들"
+          opacity={groomOpacity}
+          playlist={groom.playlist || undefined}
+        />
 
-        {/* Profile cards - stacked, opacity-controlled */}
-        <div className="hero__profiles">
-          <ProfileCard
-            person={groom}
-            role="아들"
-            opacity={groomOpacity}
-            playlist={groom.playlist || undefined}
-          />
-          <ProfileCard
-            person={bride}
-            role="딸"
-            opacity={brideOpacity}
-          />
-        </div>
+        {/* Layer 3: Bride profile (white bg, covers everything behind) */}
+        <ProfileLayer
+          person={bride}
+          role="딸"
+          opacity={brideOpacity}
+        />
 
         {/* Dim overlay */}
         <AnimatePresence>

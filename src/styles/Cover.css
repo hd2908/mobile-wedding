@@ -12,30 +12,45 @@
   top: 0;
   height: 100vh;
   height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   overflow: hidden;
   background: var(--color-bg);
 }
 
-/* SVG background — centered, always behind content */
+/* SVG background — centered, behind everything */
 .hero__svg {
   position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   width: 70%;
   height: 80%;
   pointer-events: none;
+  z-index: 0;
 }
 
-/* Cover content — names, date, venue */
-.hero__cover-content {
+/* Each phase is a full-screen layer with white background */
+.hero__layer {
   position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg);
+}
+
+/* Cover layer — transparent bg so SVG shows through */
+.hero__layer--cover {
+  background: transparent;
+}
+
+/* Cover content */
+.hero__cover-content {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   padding: 0 32px;
-  z-index: 1;
 }
 
 .hero__date {
@@ -72,35 +87,20 @@
   color: var(--color-text-muted);
 }
 
-/* Invitation title */
-.hero__invitation-title {
-  position: absolute;
-  top: 15%;
+/* Profile layer content */
+.hero__profile-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 32px;
+}
+
+.hero__profile-label {
   font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 6px;
   color: var(--color-text);
-  z-index: 1;
-}
-
-/* Profile cards container */
-.hero__profiles {
-  position: absolute;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 0 32px;
-  z-index: 1;
-}
-
-/* Individual profile card */
-.hero__profile {
-  position: absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: calc(100% - 64px);
+  margin-bottom: 40px;
 }
 
 .hero__profile-photo {
