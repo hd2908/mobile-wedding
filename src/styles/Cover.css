@@ -1,44 +1,41 @@
+/* Scroll space — determines total scroll length for all phases */
 .hero {
   width: 100%;
   max-width: var(--max-width);
+  height: 500vh;
   position: relative;
+}
+
+/* Sticky viewport — stays fixed while user scrolls through hero */
+.hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
   background: var(--color-bg);
 }
 
-/* SVG animation layer - spans entire hero */
-.hero__svg-container {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  pointer-events: none;
-  overflow: hidden;
-}
-
+/* SVG background — centered, always behind content */
 .hero__svg {
-  width: 100%;
-  height: 100%;
+  position: absolute;
+  width: 70%;
+  height: 80%;
+  pointer-events: none;
 }
 
-/* Cover - first viewport */
-.hero__cover {
-  min-height: 100vh;
-  min-height: 100dvh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
+/* Cover content — names, date, venue */
 .hero__cover-content {
-  position: relative;
-  z-index: 1;
+  position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 24px;
   padding: 0 32px;
+  z-index: 1;
 }
 
 .hero__date {
@@ -75,73 +72,35 @@
   color: var(--color-text-muted);
 }
 
-/* Dim overlay */
-.hero__dim {
-  position: absolute;
-  inset: 0;
-  background: rgba(255, 255, 255, 0.6);
-  z-index: 10;
-  display: flex;
-  align-items: flex-end;
-  justify-content: center;
-  padding-bottom: 80px;
-}
-
-.hero__dim-bottom {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 12px;
-}
-
-.hero__dim-text {
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 4px;
-  color: var(--color-text-light);
-}
-
-/* Invitation - scroll-locked section */
-.hero__invitation {
-  height: 250vh;
-  position: relative;
-}
-
-.hero__invitation-sticky {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 0 32px;
-  overflow: hidden;
-}
-
+/* Invitation title */
 .hero__invitation-title {
+  position: absolute;
+  top: 15%;
   font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 6px;
   color: var(--color-text);
-  margin-bottom: 40px;
+  z-index: 1;
 }
 
-.hero__invitation-cards {
-  position: relative;
-  width: 100%;
+/* Profile cards container */
+.hero__profiles {
+  position: absolute;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 100%;
+  padding: 0 32px;
+  z-index: 1;
 }
 
-/* Profile card */
+/* Individual profile card */
 .hero__profile {
   position: absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
-  width: 100%;
+  width: calc(100% - 64px);
 }
 
 .hero__profile-photo {
@@ -215,4 +174,30 @@
 .hero__profile-playlist:hover {
   background: var(--color-text);
   color: var(--color-bg);
+}
+
+/* Dim overlay */
+.hero__dim {
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.6);
+  z-index: 10;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding-bottom: 80px;
+}
+
+.hero__dim-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+
+.hero__dim-text {
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  color: var(--color-text-light);
 }
