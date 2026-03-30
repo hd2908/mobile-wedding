@@ -1,0 +1,89 @@
+.greeting {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 80px 24px;
+  text-align: center;
+  background: var(--color-bg-section);
+}
+
+.greeting__divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-primary-light);
+  margin: 0 auto 32px;
+}
+
+.greeting__title {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 32px;
+}
+
+.greeting__message {
+  font-size: 0.9rem;
+  line-height: 2;
+  color: var(--color-text);
+  word-break: keep-all;
+  padding: 0 8px;
+}
+
+.greeting__parents {
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  font-size: 0.85rem;
+  color: var(--color-text-light);
+}
+
+.greeting__parents-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.greeting__parents-role {
+  font-size: 0.75rem;
+  color: var(--color-text-muted);
+  min-width: 50px;
+  text-align: right;
+}
+
+.greeting__parents-name {
+  min-width: 120px;
+  text-align: left;
+}
+
+.greeting__parents-name strong {
+  color: var(--color-text);
+  font-weight: 500;
+}
+
+.greeting__contact-row {
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+  margin-top: 24px;
+}
+
+.greeting__contact-btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  transition: all 0.3s ease;
+}
+
+.greeting__contact-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}

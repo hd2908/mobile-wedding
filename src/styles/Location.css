@@ -1,0 +1,112 @@
+.location {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 80px 24px;
+  background: var(--color-bg);
+}
+
+.location__divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-primary-light);
+  margin: 0 auto 32px;
+}
+
+.location__title {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.location__venue-name {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 400;
+  text-align: center;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.location__address {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 24px;
+}
+
+.location__map {
+  width: 100%;
+  height: 240px;
+  background: #e8e0d8;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  font-size: 0.8rem;
+  position: relative;
+}
+
+.location__map iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.location__buttons {
+  display: flex;
+  gap: 8px;
+  justify-content: center;
+}
+
+.location__btn {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 20px;
+  border: 1px solid var(--color-border);
+  border-radius: 24px;
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  transition: all 0.3s ease;
+}
+
+.location__btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.location__transport {
+  margin-top: 32px;
+  padding: 24px;
+  background: var(--color-bg-section);
+  border-radius: 8px;
+}
+
+.location__transport-title {
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.location__transport-item {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+  line-height: 1.8;
+  text-align: left;
+}
+
+.location__transport-label {
+  color: var(--color-primary);
+  font-weight: 500;
+  margin-right: 8px;
+}

@@ -1,0 +1,123 @@
+.cover {
+  width: 100%;
+  max-width: var(--max-width);
+  min-height: 100vh;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f9f5f0 0%, #f0e8dd 50%, #e8ddd0 100%);
+}
+
+.cover__bg-pattern {
+  position: absolute;
+  inset: 0;
+  opacity: 0.06;
+  background-image:
+    radial-gradient(circle at 20% 30%, var(--color-primary) 1px, transparent 1px),
+    radial-gradient(circle at 80% 70%, var(--color-primary) 1px, transparent 1px),
+    radial-gradient(circle at 50% 50%, var(--color-primary) 0.5px, transparent 0.5px);
+  background-size: 60px 60px, 80px 80px, 40px 40px;
+}
+
+.cover__content {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+  padding: 0 24px;
+}
+
+.cover__label {
+  font-family: var(--font-serif);
+  font-size: 0.7rem;
+  font-weight: 300;
+  letter-spacing: 8px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+}
+
+.cover__ornament {
+  width: 60px;
+  height: 1px;
+  background: var(--color-primary-light);
+  position: relative;
+  margin: 8px 0;
+}
+
+.cover__ornament::before,
+.cover__ornament::after {
+  content: '';
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--color-primary-light);
+  transform: rotate(45deg);
+  top: -3px;
+}
+
+.cover__ornament::before {
+  left: -10px;
+}
+
+.cover__ornament::after {
+  right: -10px;
+}
+
+.cover__names {
+  font-family: var(--font-serif);
+  font-size: 2rem;
+  font-weight: 300;
+  letter-spacing: 2px;
+  color: var(--color-text);
+  text-align: center;
+  line-height: 1.6;
+}
+
+.cover__names span {
+  color: var(--color-primary);
+  margin: 0 12px;
+  font-size: 1rem;
+  vertical-align: middle;
+}
+
+.cover__date {
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 300;
+  color: var(--color-text-light);
+  letter-spacing: 3px;
+}
+
+.cover__venue {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+}
+
+.cover__scroll {
+  position: absolute;
+  bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.cover__scroll-text {
+  font-size: 0.65rem;
+  letter-spacing: 3px;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+}
+
+.cover__scroll-line {
+  width: 1px;
+  height: 30px;
+  background: linear-gradient(to bottom, var(--color-primary-light), transparent);
+}

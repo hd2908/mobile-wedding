@@ -1,0 +1,115 @@
+.account {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 80px 24px;
+  background: var(--color-bg-section);
+}
+
+.account__divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-primary-light);
+  margin: 0 auto 32px;
+}
+
+.account__title {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  text-align: center;
+  margin-bottom: 12px;
+}
+
+.account__subtitle {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.account__group {
+  margin-bottom: 32px;
+}
+
+.account__group-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  cursor: pointer;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.account__group-label {
+  font-family: var(--font-serif);
+  font-size: 0.9rem;
+  font-weight: 400;
+  color: var(--color-text);
+}
+
+.account__group-toggle {
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  transition: transform 0.3s ease;
+}
+
+.account__group-toggle--open {
+  transform: rotate(180deg);
+}
+
+.account__list {
+  overflow: hidden;
+}
+
+.account__item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 0;
+  border-bottom: 1px solid rgba(232, 224, 216, 0.5);
+}
+
+.account__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.account__bank {
+  font-size: 0.7rem;
+  color: var(--color-text-muted);
+}
+
+.account__number {
+  font-size: 0.8rem;
+  color: var(--color-text);
+}
+
+.account__holder {
+  font-size: 0.75rem;
+  color: var(--color-text-light);
+}
+
+.account__copy-btn {
+  padding: 6px 16px;
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  font-size: 0.7rem;
+  color: var(--color-text-light);
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+
+.account__copy-btn:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+.account__copy-btn--copied {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: rgba(201, 169, 110, 0.1);
+}

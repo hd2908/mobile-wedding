@@ -1,0 +1,122 @@
+.calendar {
+  width: 100%;
+  max-width: var(--max-width);
+  padding: 80px 24px;
+  background: var(--color-bg-section);
+  text-align: center;
+}
+
+.calendar__divider {
+  width: 1px;
+  height: 40px;
+  background: var(--color-primary-light);
+  margin: 0 auto 32px;
+}
+
+.calendar__title {
+  font-family: var(--font-serif);
+  font-size: 0.75rem;
+  font-weight: 300;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: var(--color-primary);
+  margin-bottom: 32px;
+}
+
+.calendar__date-text {
+  font-family: var(--font-serif);
+  font-size: 1.1rem;
+  font-weight: 300;
+  color: var(--color-text);
+  margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+
+.calendar__time-text {
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  margin-bottom: 40px;
+  letter-spacing: 1px;
+}
+
+.calendar__grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 4px;
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+.calendar__day-header {
+  font-size: 0.7rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  padding: 8px 0;
+  text-transform: uppercase;
+}
+
+.calendar__day-header:first-child {
+  color: #d4877f;
+}
+
+.calendar__day {
+  aspect-ratio: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: var(--color-text-light);
+  border-radius: 50%;
+  position: relative;
+}
+
+.calendar__day:nth-child(7n+1) {
+  color: #d4877f;
+}
+
+.calendar__day--empty {
+  visibility: hidden;
+}
+
+.calendar__day--today {
+  background: var(--color-primary);
+  color: white !important;
+  font-weight: 600;
+}
+
+.calendar__countdown {
+  margin-top: 48px;
+  display: flex;
+  justify-content: center;
+  gap: 24px;
+}
+
+.calendar__countdown-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.calendar__countdown-number {
+  font-family: var(--font-serif);
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: var(--color-primary);
+  line-height: 1;
+}
+
+.calendar__countdown-label {
+  font-size: 0.65rem;
+  color: var(--color-text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-top: 8px;
+}
+
+.calendar__countdown-colon {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  color: var(--color-primary-light);
+  align-self: flex-start;
+  margin-top: 4px;
+}

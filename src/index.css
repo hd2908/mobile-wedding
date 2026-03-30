@@ -1,0 +1,70 @@
+:root {
+  --color-bg: #f5f0eb;
+  --color-bg-section: #ffffff;
+  --color-primary: #c9a96e;
+  --color-primary-light: #e8d5b0;
+  --color-text: #3a3a3a;
+  --color-text-light: #888888;
+  --color-text-muted: #b0a898;
+  --color-border: #e8e0d8;
+  --color-accent: #d4a574;
+  --font-serif: 'Noto Serif KR', 'Gowun Batang', serif;
+  --font-body: 'Gowun Batang', 'Noto Serif KR', serif;
+  --max-width: 480px;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.8;
+  overflow-x: hidden;
+  margin: 0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
