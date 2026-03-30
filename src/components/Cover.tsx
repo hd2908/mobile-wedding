@@ -81,7 +81,7 @@ export default function Cover() {
 
   // SVG lines
   const pathProgress = useTransform(scrollYProgress, [0, 0.18], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.16, 0.22], [0.2, 0.6, 0.6, 0]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.02, 0.16, 0.22], [0.5, 1, 1, 0]);
 
   // Groom layer (white bg)
   // Stays at 1 until bride is fully opaque at 0.54, then drops
@@ -111,28 +111,28 @@ export default function Cover() {
         >
           <motion.line
             x1="100" y1="0" x2="100" y2="50"
-            stroke="rgba(0,0,0,0.12)"
-            strokeWidth="0.5"
+            stroke="rgba(0,0,0,0.35)"
+            strokeWidth="0.7"
             style={{ opacity: pathOpacity }}
           />
           <motion.path
             d="M100,50 C100,100 45,140 25,200 C5,260 30,320 100,370"
-            stroke="rgba(0,0,0,0.18)"
-            strokeWidth="0.6"
+            stroke="rgba(0,0,0,0.5)"
+            strokeWidth="0.8"
             fill="none"
             style={{ pathLength: pathProgress, opacity: pathOpacity }}
           />
           <motion.path
             d="M100,50 C100,100 155,140 175,200 C195,260 170,320 100,370"
-            stroke="rgba(0,0,0,0.18)"
-            strokeWidth="0.6"
+            stroke="rgba(0,0,0,0.5)"
+            strokeWidth="0.8"
             fill="none"
             style={{ pathLength: pathProgress, opacity: pathOpacity }}
           />
           <motion.line
             x1="100" y1="370" x2="100" y2="400"
-            stroke="rgba(0,0,0,0.12)"
-            strokeWidth="0.5"
+            stroke="rgba(0,0,0,0.35)"
+            strokeWidth="0.7"
             style={{ opacity: pathProgress }}
           />
         </svg>
