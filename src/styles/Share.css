@@ -7,10 +7,9 @@
 }
 
 .share__title {
-  font-size: 0.65rem;
+  font-size: 0.75rem;
   font-weight: 400;
   letter-spacing: 6px;
-  text-transform: uppercase;
   color: var(--color-text);
   margin-bottom: 32px;
 }

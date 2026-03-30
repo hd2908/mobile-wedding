@@ -76,7 +76,7 @@ export default function Guestbook() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Guestbook
+        방명록
       </motion.p>
 
       <motion.form

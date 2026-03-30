@@ -1,24 +1,91 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
 import { config } from '../config';
 import '../styles/Cover.css';
+
+function ProfileCard({
+  person,
+  role,
+  opacity,
+  playlist,
+}: {
+  person: typeof config.groom;
+  role: string;
+  opacity: ReturnType<typeof useTransform>;
+  playlist?: string;
+}) {
+  return (
+    <motion.div className="hero__profile" style={{ opacity }}>
+      <div className="hero__profile-photo">
+        {person.photo ? (
+          <img src={person.photo} alt={person.name} />
+        ) : (
+          <div className="hero__profile-photo-placeholder" />
+        )}
+      </div>
+
+      <h3 className="hero__profile-name">{person.name}</h3>
+
+      <p className="hero__profile-parents">
+        {person.father} · {person.mother}
+        <span>의 {role}</span>
+      </p>
+
+      <div className="hero__profile-rule" />
+
+      <p className="hero__profile-intro">
+        {person.intro.split('\n').map((line, i) => (
+          <span key={i}>
+            {line}
+            <br />
+          </span>
+        ))}
+      </p>
+
+      {playlist && (
+        <a
+          href={playlist}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="hero__profile-playlist"
+        >
+          신랑의 플레이리스트
+          <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+            <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
+          </svg>
+        </a>
+      )}
+    </motion.div>
+  );
+}
 
 export default function Cover() {
   const { groom, bride, wedding } = config;
   const [showDim, setShowDim] = useState(true);
-  const [activeTab, setActiveTab] = useState<'groom' | 'bride'>('groom');
   const heroRef = useRef<HTMLElement>(null);
-  const [greetingRef, greetingInView] = useInView({ triggerOnce: true, threshold: 0.2 });
+  const invitationRef = useRef<HTMLDivElement>(null);
 
+  // Hero-level scroll for SVG animation
   const { scrollYProgress } = useScroll({
     target: heroRef,
     offset: ['start start', 'end start'],
   });
 
-  // SVG path draws as user scrolls through the entire hero section
-  const pathProgress = useTransform(scrollYProgress, [0, 0.6], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.05, 0.6, 0.8], [0.3, 0.8, 0.8, 0]);
+  // Invitation section scroll for profile fade transition
+  const { scrollYProgress: invProgress } = useScroll({
+    target: invitationRef,
+    offset: ['start start', 'end end'],
+  });
+
+  // SVG path
+  const pathProgress = useTransform(scrollYProgress, [0, 0.4], [0, 1]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.4, 0.6], [0.3, 0.8, 0.8, 0]);
+
+  // Profile fade: groom visible first half, bride visible second half
+  const groomOpacity = useTransform(invProgress, [0, 0.35, 0.45, 0.5], [1, 1, 0, 0]);
+  const brideOpacity = useTransform(invProgress, [0.45, 0.55, 0.95, 1], [0, 1, 1, 1]);
+  // Title label transition
+  const labelOpacity = useTransform(invProgress, [0, 0.1], [0, 1]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -41,14 +108,12 @@ export default function Cover() {
           className="hero__svg"
           preserveAspectRatio="xMidYMid slice"
         >
-          {/* Starting vertical line */}
           <motion.line
             x1="100" y1="0" x2="100" y2="60"
             stroke="rgba(0,0,0,0.15)"
             strokeWidth="0.5"
             style={{ opacity: useTransform(scrollYProgress, [0, 0.05], [1, 0.4]) }}
           />
-          {/* Left path - splits away then returns */}
           <motion.path
             d="M100,60 C100,110 50,160 30,240 C10,320 30,420 100,520"
             stroke="rgba(0,0,0,0.2)"
@@ -56,7 +121,6 @@ export default function Cover() {
             fill="none"
             style={{ pathLength: pathProgress, opacity: pathOpacity }}
           />
-          {/* Right path - splits away then returns */}
           <motion.path
             d="M100,60 C100,110 150,160 170,240 C190,320 170,420 100,520"
             stroke="rgba(0,0,0,0.2)"
@@ -64,7 +128,6 @@ export default function Cover() {
             fill="none"
             style={{ pathLength: pathProgress, opacity: pathOpacity }}
           />
-          {/* Ending vertical line */}
           <motion.line
             x1="100" y1="520" x2="100" y2="600"
             stroke="rgba(0,0,0,0.15)"
@@ -130,97 +193,27 @@ export default function Cover() {
         </AnimatePresence>
       </div>
 
-      {/* Invitation area - profile tabs */}
-      <div className="hero__invitation" ref={greetingRef}>
-        <motion.p
-          className="hero__invitation-title"
-          initial={{ opacity: 0, y: 20 }}
-          animate={greetingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-        >
-          Invitation
-        </motion.p>
+      {/* Invitation - scroll-locked profile transition */}
+      <div className="hero__invitation" ref={invitationRef}>
+        <div className="hero__invitation-sticky">
+          <motion.p className="hero__invitation-title" style={{ opacity: labelOpacity }}>
+            소개
+          </motion.p>
 
-        <div className="hero__rule" />
-
-        <motion.div
-          className="hero__tabs"
-          initial={{ opacity: 0, y: 20 }}
-          animate={greetingInView ? { opacity: 1, y: 0 } : {}}
-          transition={{ delay: 0.3, duration: 0.8 }}
-        >
-          <button
-            className={`hero__tab ${activeTab === 'groom' ? 'hero__tab--active' : ''}`}
-            onClick={() => setActiveTab('groom')}
-          >
-            신랑
-          </button>
-          <button
-            className={`hero__tab ${activeTab === 'bride' ? 'hero__tab--active' : ''}`}
-            onClick={() => setActiveTab('bride')}
-          >
-            신부
-          </button>
-        </motion.div>
-
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={activeTab}
-            className="hero__profile"
-            initial={{ opacity: 0, x: activeTab === 'groom' ? -20 : 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            exit={{ opacity: 0, x: activeTab === 'groom' ? 20 : -20 }}
-            transition={{ duration: 0.3 }}
-          >
-            {(() => {
-              const person = activeTab === 'groom' ? groom : bride;
-              const role = activeTab === 'groom' ? '아들' : '딸';
-              return (
-                <>
-                  <div className="hero__profile-photo">
-                    {person.photo ? (
-                      <img src={person.photo} alt={person.name} />
-                    ) : (
-                      <div className="hero__profile-photo-placeholder" />
-                    )}
-                  </div>
-
-                  <h3 className="hero__profile-name">{person.name}</h3>
-
-                  <p className="hero__profile-parents">
-                    {person.father} · {person.mother}
-                    <span>의 {role}</span>
-                  </p>
-
-                  <div className="hero__rule hero__rule--short" />
-
-                  <p className="hero__profile-intro">
-                    {person.intro.split('\n').map((line, i) => (
-                      <span key={i}>
-                        {line}
-                        <br />
-                      </span>
-                    ))}
-                  </p>
-
-                  {activeTab === 'groom' && groom.playlist && (
-                    <a
-                      href={groom.playlist}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="hero__profile-playlist"
-                    >
-                      신랑의 플레이리스트
-                      <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                        <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
-                      </svg>
-                    </a>
-                  )}
-                </>
-              );
-            })()}
-          </motion.div>
-        </AnimatePresence>
+          <div className="hero__invitation-cards">
+            <ProfileCard
+              person={groom}
+              role="아들"
+              opacity={groomOpacity}
+              playlist={groom.playlist || undefined}
+            />
+            <ProfileCard
+              person={bride}
+              role="딸"
+              opacity={brideOpacity}
+            />
+          </div>
+        </div>
       </div>
     </section>
   );

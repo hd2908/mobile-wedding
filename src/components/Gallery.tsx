@@ -19,7 +19,7 @@ export default function Gallery() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Gallery
+        갤러리
       </motion.p>
 
       <div className="gallery__rule" />

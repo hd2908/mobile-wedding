@@ -112,7 +112,7 @@ export default function Account() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Gift
+        마음 전하기
       </motion.p>
 
       <div className="account__rule" />

@@ -76,7 +76,7 @@ export default function Share() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Share
+        공유하기
       </motion.p>
 
       <div className="share__rule" />

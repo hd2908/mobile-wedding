@@ -15,7 +15,7 @@ export default function Menu() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Menu
+        식사 안내
       </motion.p>
 
       <div className="menu__rule" />

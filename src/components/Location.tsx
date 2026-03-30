@@ -22,7 +22,7 @@ export default function Location() {
         animate={inView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8 }}
       >
-        Location
+        오시는 길
       </motion.p>
 
       <div className="location__rule" />
