@@ -1,7 +1,9 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence, type MotionValue } from 'framer-motion';
 import { config } from '../config';
 import '../styles/Cover.css';
+
+type Person = typeof config.groom | typeof config.bride;
 
 function ProfileCard({
   person,
@@ -9,9 +11,9 @@ function ProfileCard({
   opacity,
   playlist,
 }: {
-  person: typeof config.groom;
+  person: Person;
   role: string;
-  opacity: ReturnType<typeof useTransform>;
+  opacity: MotionValue<number>;
   playlist?: string;
 }) {
   return (
