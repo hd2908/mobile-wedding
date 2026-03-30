@@ -1,7 +1,8 @@
+/* Section */
 .gallery {
   width: 100%;
   max-width: var(--max-width);
-  padding: 80px 32px;
+  padding: 80px 0 0;
   background: var(--color-bg);
   text-align: center;
 }
@@ -11,54 +12,92 @@
   font-weight: 400;
   letter-spacing: 6px;
   color: var(--color-text);
-  margin-bottom: 32px;
+  margin-bottom: 12px;
 }
 
 .gallery__rule {
-  width: 100%;
+  width: 40px;
   height: 1px;
   background: var(--color-border);
-  margin-bottom: 32px;
+  margin: 0 auto 40px;
 }
 
+/* Grid — vertical stack of rows */
 .gallery__grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 2px;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
 }
 
-.gallery__item {
-  aspect-ratio: 1;
+/* Shared cell */
+.gallery__cell {
+  overflow: hidden;
+  cursor: pointer;
+  min-width: 0;
+}
+
+.gallery__cell img,
+.gallery__solo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 0.4s ease;
+}
+
+.gallery__cell:hover img,
+.gallery__solo:hover img {
+  transform: scale(1.05);
+}
+
+/* Solo — full-width single image */
+.gallery__solo {
+  width: 100%;
+  aspect-ratio: 3/4;
   overflow: hidden;
   cursor: pointer;
 }
 
-.gallery__item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.4s ease;
+.gallery__solo--land {
+  aspect-ratio: 3/2;
 }
 
-.gallery__item:hover img {
-  transform: scale(1.03);
-}
-
-.gallery__placeholder {
-  width: 100%;
-  height: 100%;
-  background: #f0f0f0;
+/* Duo — two images side by side, uneven flex */
+.gallery__duo {
   display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 0.7rem;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: var(--color-text-muted);
+  width: 100%;
+  gap: 0;
+}
+
+.gallery__duo .gallery__cell {
+  aspect-ratio: 2/3;
+}
+
+/* Trio — one large left + two stacked right */
+.gallery__trio {
+  display: flex;
+  width: 100%;
+  gap: 0;
+}
+
+.gallery__trio-main {
+  flex: 1;
+}
+
+.gallery__trio-stack {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+}
+
+.gallery__trio-stack .gallery__cell {
+  flex: 1;
 }
 
 /* Modal / Lightbox */
-.gallery__modal-overlay {
+.gallery__overlay {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.95);
@@ -68,14 +107,14 @@
   justify-content: center;
 }
 
-.gallery__modal-content {
+.gallery__modal {
   width: 100%;
   max-width: var(--max-width);
   height: 100%;
   position: relative;
 }
 
-.gallery__modal-close {
+.gallery__close {
   position: absolute;
   top: 16px;
   right: 16px;
@@ -89,7 +128,7 @@
   justify-content: center;
 }
 
-.gallery__modal-counter {
+.gallery__counter {
   position: absolute;
   bottom: 24px;
   left: 50%;
@@ -115,17 +154,4 @@
   width: 100%;
   max-height: 80vh;
   object-fit: contain;
-}
-
-.gallery__modal-placeholder {
-  width: 80%;
-  height: 60vh;
-  background: #1a1a1a;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1rem;
-  font-weight: 300;
-  letter-spacing: 4px;
-  color: rgba(255, 255, 255, 0.3);
 }

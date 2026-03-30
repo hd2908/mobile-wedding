@@ -10,14 +10,16 @@ function ProfileLayer({
   role,
   opacity,
   playlist,
+  zIndex,
 }: {
   person: Person;
   role: string;
   opacity: MotionValue<number>;
   playlist?: string;
+  zIndex?: number;
 }) {
   return (
-    <motion.div className="hero__layer" style={{ opacity }}>
+    <motion.div className="hero__layer" style={{ opacity, zIndex }}>
       <div className="hero__profile-inner">
         <p className="hero__profile-label">소개</p>
         <div className="hero__profile-photo">
@@ -140,7 +142,7 @@ export default function Cover() {
         {/* Layer 1: Cover (transparent bg, SVG visible behind) */}
         <motion.div
           className="hero__layer hero__layer--cover"
-          style={{ opacity: coverOpacity }}
+          style={{ opacity: coverOpacity, zIndex: 1 }}
         >
           <div className="hero__cover-content">
             <p className="hero__date">{wedding.dateDisplay}</p>
@@ -159,6 +161,7 @@ export default function Cover() {
           role="아들"
           opacity={groomOpacity}
           playlist={groom.playlist || undefined}
+          zIndex={2}
         />
 
         {/* Layer 3: Bride profile (white bg, covers everything behind) */}
@@ -166,6 +169,7 @@ export default function Cover() {
           person={bride}
           role="딸"
           opacity={brideOpacity}
+          zIndex={3}
         />
 
         {/* Dim overlay */}
