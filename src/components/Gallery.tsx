@@ -3,17 +3,16 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import 'swiper/swiper-bundle.css';
+import { config } from '../config';
 import '../styles/Gallery.css';
 
-const placeholderColors = ['#d4c5b0', '#c9b99a', '#bfaf8e', '#b8a888', '#c4b69c'];
-
 export default function Gallery() {
+  const { gallery } = config;
   const [selected, setSelected] = useState<number | null>(null);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.1 });
 
   return (
     <section className="gallery" ref={ref}>
-      <div className="gallery__divider" />
       <motion.p
         className="gallery__title"
         initial={{ opacity: 0, y: 20 }}
@@ -23,31 +22,25 @@ export default function Gallery() {
         Gallery
       </motion.p>
 
+      <div className="gallery__rule" />
+
       <div className="gallery__grid">
-        {placeholderColors.map((color, i) => (
+        {gallery.map((photo, i) => (
           <motion.div
-            key={i}
+            key={photo.id}
             className="gallery__item"
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={inView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ delay: 0.1 * i, duration: 0.5 }}
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.05 * i, duration: 0.5 }}
             onClick={() => setSelected(i)}
           >
-            <div
-              style={{
-                width: '100%',
-                height: '100%',
-                background: `linear-gradient(135deg, ${color}, ${color}dd)`,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                fontSize: '0.75rem',
-                letterSpacing: '2px',
-              }}
-            >
-              PHOTO {i + 1}
-            </div>
+            {photo.src ? (
+              <img src={photo.src} alt={photo.alt} />
+            ) : (
+              <div className="gallery__placeholder">
+                <span>{String(i + 1).padStart(2, '0')}</span>
+              </div>
+            )}
           </motion.div>
         ))}
       </div>
@@ -70,28 +63,20 @@ export default function Gallery() {
                 initialSlide={selected}
                 onSlideChange={(swiper) => setSelected(swiper.activeIndex)}
               >
-                {placeholderColors.map((color, i) => (
-                  <SwiperSlide key={i}>
-                    <div
-                      style={{
-                        width: '100%',
-                        height: '60vh',
-                        background: `linear-gradient(135deg, ${color}, ${color}dd)`,
-                        display: 'flex',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        color: 'white',
-                        fontSize: '1rem',
-                        letterSpacing: '3px',
-                      }}
-                    >
-                      PHOTO {i + 1}
-                    </div>
+                {gallery.map((photo, i) => (
+                  <SwiperSlide key={photo.id}>
+                    {photo.src ? (
+                      <img src={photo.src} alt={photo.alt} />
+                    ) : (
+                      <div className="gallery__modal-placeholder">
+                        <span>{String(i + 1).padStart(2, '0')}</span>
+                      </div>
+                    )}
                   </SwiperSlide>
                 ))}
               </Swiper>
               <div className="gallery__modal-counter">
-                {selected + 1} / {placeholderColors.length}
+                {selected + 1} / {gallery.length}
               </div>
             </div>
           </motion.div>

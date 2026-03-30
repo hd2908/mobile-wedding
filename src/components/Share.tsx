@@ -25,11 +25,13 @@ export default function Share() {
   };
 
   const handleKakaoShare = () => {
-    const { Kakao } = window as unknown as { Kakao?: {
-      isInitialized: () => boolean;
-      init: (key: string) => void;
-      Share: { sendDefault: (options: unknown) => void };
-    }};
+    const { Kakao } = window as unknown as {
+      Kakao?: {
+        isInitialized: () => boolean;
+        init: (key: string) => void;
+        Share: { sendDefault: (options: unknown) => void };
+      };
+    };
 
     if (!Kakao) {
       alert('카카오톡 SDK가 로드되지 않았습니다');
@@ -46,8 +48,8 @@ export default function Share() {
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
-        title: `${groom.name} ♥ ${bride.name} 결혼합니다`,
-        description: `${wedding.date} ${wedding.time}\n${wedding.venue}`,
+        title: `${groom.name} & ${bride.name} 결혼합니다`,
+        description: `${wedding.dateDisplay}\n${wedding.venue}`,
         imageUrl: '',
         link: {
           mobileWebUrl: window.location.href,
@@ -68,7 +70,6 @@ export default function Share() {
 
   return (
     <section className="share" ref={ref}>
-      <div className="share__divider" />
       <motion.p
         className="share__title"
         initial={{ opacity: 0, y: 20 }}
@@ -78,26 +79,19 @@ export default function Share() {
         Share
       </motion.p>
 
-      <motion.p
-        className="share__message"
-        initial={{ opacity: 0 }}
-        animate={inView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.3, duration: 0.8 }}
-      >
-        소중한 분들에게 청첩장을 공유해주세요
-      </motion.p>
+      <div className="share__rule" />
 
       <motion.div
         className="share__buttons"
         initial={{ opacity: 0, y: 20 }}
         animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.5, duration: 0.8 }}
+        transition={{ delay: 0.3, duration: 0.8 }}
       >
         <button className="share__btn share__btn--kakao" onClick={handleKakaoShare}>
-          카카오톡으로 공유하기
+          카카오톡으로 공유
         </button>
         <button className="share__btn share__btn--copy" onClick={handleCopyLink}>
-          링크 복사하기
+          링크 복사
         </button>
       </motion.div>
 
@@ -105,14 +99,13 @@ export default function Share() {
         className="share__footer"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
-        transition={{ delay: 0.8, duration: 0.8 }}
+        transition={{ delay: 0.6, duration: 0.8 }}
       >
+        <div className="share__footer-rule" />
         <p className="share__footer-names">
-          {groom.name} <span>&amp;</span> {bride.name}
+          {groom.name} & {bride.name}
         </p>
-        <p className="share__footer-date">
-          {wedding.date.replace(/-/g, '. ')}
-        </p>
+        <p className="share__footer-date">{wedding.dateDisplay}</p>
       </motion.div>
 
       <AnimatePresence>

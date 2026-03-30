@@ -1,37 +1,37 @@
 .account {
   width: 100%;
   max-width: var(--max-width);
-  padding: 80px 24px;
-  background: var(--color-bg-section);
-}
-
-.account__divider {
-  width: 1px;
-  height: 40px;
-  background: var(--color-primary-light);
-  margin: 0 auto 32px;
+  padding: 80px 32px;
+  background: var(--color-bg);
+  text-align: center;
 }
 
 .account__title {
-  font-family: var(--font-serif);
-  font-size: 0.75rem;
-  font-weight: 300;
-  letter-spacing: 4px;
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 6px;
   text-transform: uppercase;
-  color: var(--color-primary);
-  text-align: center;
-  margin-bottom: 12px;
+  color: var(--color-text);
+  margin-bottom: 32px;
+}
+
+.account__rule {
+  width: 100%;
+  height: 1px;
+  background: var(--color-border);
+  margin-bottom: 32px;
 }
 
 .account__subtitle {
   font-size: 0.8rem;
+  font-weight: 300;
   color: var(--color-text-light);
-  text-align: center;
   margin-bottom: 40px;
 }
 
 .account__group {
-  margin-bottom: 32px;
+  margin-bottom: 24px;
+  text-align: left;
 }
 
 .account__group-header {
@@ -44,9 +44,9 @@
 }
 
 .account__group-label {
-  font-family: var(--font-serif);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   font-weight: 400;
+  letter-spacing: 1px;
   color: var(--color-text);
 }
 
@@ -69,7 +69,7 @@
   align-items: center;
   justify-content: space-between;
   padding: 16px 0;
-  border-bottom: 1px solid rgba(232, 224, 216, 0.5);
+  border-bottom: 1px solid var(--color-border-light);
 }
 
 .account__info {
@@ -79,37 +79,61 @@
 }
 
 .account__bank {
-  font-size: 0.7rem;
+  font-size: 0.65rem;
+  font-weight: 300;
   color: var(--color-text-muted);
+  letter-spacing: 0.5px;
 }
 
 .account__number {
   font-size: 0.8rem;
+  font-weight: 400;
   color: var(--color-text);
+  letter-spacing: 0.5px;
 }
 
 .account__holder {
-  font-size: 0.75rem;
+  font-size: 0.7rem;
+  font-weight: 300;
   color: var(--color-text-light);
+}
+
+.account__actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
 }
 
 .account__copy-btn {
-  padding: 6px 16px;
+  padding: 6px 14px;
   border: 1px solid var(--color-border);
-  border-radius: 16px;
-  font-size: 0.7rem;
-  color: var(--color-text-light);
+  font-size: 0.65rem;
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  color: var(--color-text);
   transition: all 0.3s ease;
-  white-space: nowrap;
 }
 
 .account__copy-btn:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
+  background: var(--color-text);
+  color: var(--color-bg);
 }
 
 .account__copy-btn--copied {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-  background: rgba(201, 169, 110, 0.1);
+  background: var(--color-text);
+  color: var(--color-bg);
+}
+
+.account__kakao-btn {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #fee500;
+  font-size: 0.65rem;
+  font-weight: 500;
+  color: #3a1d1d;
+  transition: opacity 0.3s ease;
+}
+
+.account__kakao-btn:hover {
+  opacity: 0.85;
 }
