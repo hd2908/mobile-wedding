@@ -2,7 +2,7 @@
 .hero {
   width: 100%;
   max-width: var(--max-width);
-  height: 600vh;
+  height: 800vh;
   position: relative;
 }
 

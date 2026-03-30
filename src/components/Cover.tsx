@@ -66,27 +66,27 @@ export default function Cover() {
     offset: ['start start', 'end end'],
   });
 
-  // 600vh total, offset ['start start', 'end end'] = 500vh of scroll
-  // Phase 1: Cover + SVG draw  0 ~ 0.30  (150vh - SVG 완성까지)
-  // Phase 2: Groom             0.32 ~ 0.55 (115vh viewing)
-  // Phase 3: Bride             0.58 ~ 0.82 (120vh viewing)
-  // Phase 4: Fade out          0.82 ~ 0.92
+  // 800vh total, offset ['start start', 'end end'] = 700vh of scroll
+  // Phase 1: Cover + SVG   0 ~ 0.20  (140vh)
+  // Phase 2: Groom         0.22 ~ 0.48 (182vh viewing)
+  // Phase 3: Bride         0.50 ~ 0.78 (196vh viewing)
+  // Phase 4: Fade out      0.78 ~ 0.86
 
-  // Cover content - stays while SVG draws
-  const coverOpacity = useTransform(scrollYProgress, [0, 0.22, 0.3], [1, 1, 0]);
+  // Cover content
+  const coverOpacity = useTransform(scrollYProgress, [0, 0.15, 0.2], [1, 1, 0]);
 
-  // SVG lines - fully drawn by 0.30, then stays, fades at end
-  const pathProgress = useTransform(scrollYProgress, [0, 0.28], [0, 1]);
-  const pathOpacity = useTransform(scrollYProgress, [0, 0.05, 0.7, 0.88], [0.2, 0.6, 0.6, 0]);
+  // SVG lines - draw during cover, then completely hidden before profiles
+  const pathProgress = useTransform(scrollYProgress, [0, 0.18], [0, 1]);
+  const pathOpacity = useTransform(scrollYProgress, [0, 0.03, 0.16, 0.21], [0.2, 0.6, 0.6, 0]);
 
-  // Invitation title - appears after SVG completes
-  const titleOpacity = useTransform(scrollYProgress, [0.28, 0.34, 0.84, 0.9], [0, 1, 1, 0]);
+  // Invitation title
+  const titleOpacity = useTransform(scrollYProgress, [0.19, 0.24, 0.8, 0.84], [0, 1, 1, 0]);
 
-  // Groom profile - appears after SVG fully drawn
-  const groomOpacity = useTransform(scrollYProgress, [0.3, 0.36, 0.5, 0.56], [0, 1, 1, 0]);
+  // Groom profile
+  const groomOpacity = useTransform(scrollYProgress, [0.2, 0.26, 0.44, 0.5], [0, 1, 1, 0]);
 
   // Bride profile
-  const brideOpacity = useTransform(scrollYProgress, [0.54, 0.6, 0.78, 0.86], [0, 1, 1, 0]);
+  const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.76, 0.82], [0, 1, 1, 0]);
 
   useEffect(() => {
     const handleScroll = () => {
