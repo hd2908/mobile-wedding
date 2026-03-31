@@ -117,8 +117,8 @@
 }
 
 .hero__profile-photo--zoomed {
-  transform: scale(1.4);
-  object-position: center 20%;
+  transform: scale(4.5);
+  object-position: 50% 25px;
 }
 
 .hero__profile-photo-placeholder {
