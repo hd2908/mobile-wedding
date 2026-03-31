@@ -14,10 +14,20 @@ interface Message {
 
 const STORAGE_KEY = 'wedding-guestbook';
 
+const INITIAL_MESSAGES: Message[] = [
+  {
+    id: 1,
+    name: '리준희',
+    text: '희도쨩... 축하해... 행복해..',
+    date: '2026.03.31',
+    password: '1234',
+  }
+];
+
 function loadMessages(): Message[] {
   try {
     const data = localStorage.getItem(STORAGE_KEY);
-    return data ? JSON.parse(data) : [];
+    return data ? JSON.parse(data) : INITIAL_MESSAGES;
   } catch {
     return [];
   }
