@@ -1,65 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { motion, useScroll, useTransform, AnimatePresence, type MotionValue } from 'framer-motion';
+import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { config } from '../config';
 import '../styles/Cover.css';
-
-type Person = typeof config.groom | typeof config.bride;
-
-function ProfileLayer({
-  person,
-  role,
-  opacity,
-  playlist,
-  zIndex,
-}: {
-  person: Person;
-  role: string;
-  opacity: MotionValue<number>;
-  playlist?: string;
-  zIndex?: number;
-}) {
-  return (
-    <motion.div className="hero__layer" style={{ opacity, zIndex }}>
-      <div className="hero__profile-inner">
-        <p className="hero__profile-label">소개</p>
-        <div className="hero__profile-photo">
-          {person.photo ? (
-            <img src={person.photo} alt={person.name} />
-          ) : (
-            <div className="hero__profile-photo-placeholder" />
-          )}
-        </div>
-        <h3 className="hero__profile-name">{person.name}</h3>
-        <p className="hero__profile-parents">
-          {person.father} · {person.mother}
-          <span>의 {role}</span>
-        </p>
-        <div className="hero__profile-rule" />
-        <p className="hero__profile-intro">
-          {person.intro.split('\n').map((line, i) => (
-            <span key={i}>
-              {line}
-              <br />
-            </span>
-          ))}
-        </p>
-        {playlist && (
-          <a
-            href={playlist}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hero__profile-playlist"
-          >
-            신랑의 플레이리스트
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-              <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
-            </svg>
-          </a>
-        )}
-      </div>
-    </motion.div>
-  );
-}
 
 export default function Cover() {
   const { groom, bride, wedding } = config;
@@ -71,26 +13,38 @@ export default function Cover() {
     offset: ['start start', 'end end'],
   });
 
-  // 800vh total, 700vh of actual scroll
-  // Cover:  0 ~ 0.20  (140vh)
-  // Groom:  0.22 ~ 0.48  (182vh)
-  // Bride:  0.50 ~ 0.78  (196vh)
+  // 800vh total scroll space
+  // Cover:  0 ~ 0.20
+  // Groom:  0.22 ~ 0.48
+  // Bride:  0.50 ~ 0.78
   // Exit:   0.78 ~ 0.88
-
-  // Cover layer (transparent bg, SVG shows through)
-  // Stays visible until groom is fully opaque, then drops
-  const coverOpacity = useTransform(scrollYProgress, [0, 0.16, 0.26, 0.28], [1, 1, 1, 0]);
 
   // SVG lines
   const pathProgress = useTransform(scrollYProgress, [0, 0.18], [0, 1]);
   const pathOpacity = useTransform(scrollYProgress, [0, 0.02, 0.16, 0.22], [0.5, 1, 1, 0]);
 
-  // Groom layer (white bg)
-  // Stays at 1 until bride is fully opaque at 0.54, then drops
-  const groomOpacity = useTransform(scrollYProgress, [0.20, 0.26, 0.54, 0.56], [0, 1, 1, 0]);
+  // Use callback-based useTransform to avoid array-mapping subscription issues
+  const coverOpacity = useTransform(scrollYProgress, (p: number) => {
+    if (p <= 0.16) return 1;
+    if (p >= 0.28) return 0;
+    return 1 - (p - 0.16) / 0.12;
+  });
 
-  // Bride layer (white bg, on top)
-  const brideOpacity = useTransform(scrollYProgress, [0.48, 0.54, 0.76, 0.84], [0, 1, 1, 0]);
+  const groomOpacity = useTransform(scrollYProgress, (p: number) => {
+    if (p <= 0.20) return 0;
+    if (p <= 0.26) return (p - 0.20) / 0.06;
+    if (p <= 0.54) return 1;
+    if (p >= 0.56) return 0;
+    return 1 - (p - 0.54) / 0.02;
+  });
+
+  const brideOpacity = useTransform(scrollYProgress, (p: number) => {
+    if (p <= 0.48) return 0;
+    if (p <= 0.54) return (p - 0.48) / 0.06;
+    if (p <= 0.76) return 1;
+    if (p >= 0.84) return 0;
+    return 1 - (p - 0.76) / 0.08;
+  });
 
   useEffect(() => {
     const handleScroll = () => {
@@ -103,7 +57,7 @@ export default function Cover() {
   return (
     <div className="hero" ref={heroRef}>
       <div className="hero__sticky">
-        {/* SVG background - z-index 0 */}
+        {/* SVG background */}
         <svg
           className="hero__svg"
           viewBox="0 0 200 400"
@@ -142,7 +96,7 @@ export default function Cover() {
         {/* Layer 1: Cover (transparent bg, SVG visible behind) */}
         <motion.div
           className="hero__layer hero__layer--cover"
-          style={{ opacity: coverOpacity, zIndex: 1 }}
+          style={{ opacity: coverOpacity }}
         >
           <div className="hero__cover-content">
             <p className="hero__date">{wedding.dateDisplay}</p>
@@ -155,22 +109,68 @@ export default function Cover() {
           </div>
         </motion.div>
 
-        {/* Layer 2: Groom profile (white bg, covers everything behind) */}
-        <ProfileLayer
-          person={groom}
-          role="아들"
-          opacity={groomOpacity}
-          playlist={groom.playlist || undefined}
-          zIndex={2}
-        />
+        {/* Layer 2: Groom profile */}
+        <motion.div className="hero__layer" style={{ opacity: groomOpacity }}>
+          <div className="hero__profile-inner">
+            <p className="hero__profile-label">소개</p>
+            <div className="hero__profile-photo">
+              {groom.photo ? (
+                <img src={groom.photo} alt={groom.name} />
+              ) : (
+                <div className="hero__profile-photo-placeholder" />
+              )}
+            </div>
+            <h3 className="hero__profile-name">{groom.name}</h3>
+            <p className="hero__profile-parents">
+              {groom.father} · {groom.mother}
+              <span>의 아들</span>
+            </p>
+            <div className="hero__profile-rule" />
+            <p className="hero__profile-intro">
+              {groom.intro.split('\n').map((line, i) => (
+                <span key={i}>{line}<br /></span>
+              ))}
+            </p>
+            {groom.playlist && (
+              <a
+                href={groom.playlist}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hero__profile-playlist"
+              >
+                신랑의 플레이리스트
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
+                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
+                </svg>
+              </a>
+            )}
+          </div>
+        </motion.div>
 
-        {/* Layer 3: Bride profile (white bg, covers everything behind) */}
-        <ProfileLayer
-          person={bride}
-          role="딸"
-          opacity={brideOpacity}
-          zIndex={3}
-        />
+        {/* Layer 3: Bride profile */}
+        <motion.div className="hero__layer" style={{ opacity: brideOpacity }}>
+          <div className="hero__profile-inner">
+            <p className="hero__profile-label">소개</p>
+            <div className="hero__profile-photo">
+              {bride.photo ? (
+                <img src={bride.photo} alt={bride.name} className="hero__profile-photo--zoomed" />
+              ) : (
+                <div className="hero__profile-photo-placeholder" />
+              )}
+            </div>
+            <h3 className="hero__profile-name">{bride.name}</h3>
+            <p className="hero__profile-parents">
+              {bride.father} · {bride.mother}
+              <span>의 딸</span>
+            </p>
+            <div className="hero__profile-rule" />
+            <p className="hero__profile-intro">
+              {bride.intro.split('\n').map((line, i) => (
+                <span key={i}>{line}<br /></span>
+              ))}
+            </p>
+          </div>
+        </motion.div>
 
         {/* Dim overlay */}
         <AnimatePresence>

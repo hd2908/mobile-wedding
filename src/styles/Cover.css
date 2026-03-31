@@ -2,7 +2,7 @@
 .hero {
   width: 100%;
   max-width: var(--max-width);
-  height: 800vh;
+  height: 567vh;
   position: relative;
 }
 
@@ -114,6 +114,11 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+}
+
+.hero__profile-photo--zoomed {
+  transform: scale(1.4);
+  object-position: center 20%;
 }
 
 .hero__profile-photo-placeholder {

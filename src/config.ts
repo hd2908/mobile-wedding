@@ -22,7 +22,7 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
-    photo: '',
+    photo: '/mobile-wedding/boy.jpeg',
     intro: '신랑 소개글을 입력해주세요.',
     playlist: '',
   },
@@ -47,7 +47,7 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
-    photo: '',
+    photo: '/mobile-wedding/girl.png',
     intro: '신부 소개글을 입력해주세요.',
   },
 
