@@ -26,7 +26,7 @@ export default function Location() {
         scrollWheel: false,
         disableDoubleTapZoom: true,
         disableTwoFingerTapZoom: true,
-      });
+      } as naver.maps.MapOptions);
       new naver.maps.Marker({ position, map });
     };
 
