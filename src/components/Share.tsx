@@ -52,7 +52,7 @@ export default function Share() {
       content: {
         title: `${groom.name} & ${bride.name} 결혼합니다`,
         description: `${wedding.dateDisplay}\n${wedding.venue}`,
-        imageUrl: `${shareUrl}thumbnail_test.png`,
+        imageUrl: `${shareUrl}thumbnail.webp`,
         link: {
           mobileWebUrl: shareUrl,
           webUrl: shareUrl,

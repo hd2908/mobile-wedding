@@ -13,21 +13,21 @@ type Row =
   | { type: 'trio'; left: string; right: [string, string] };
 
 const rows: Row[] = [
-  { type: 'solo', src: 'black1.jpg' },
-  { type: 'duo', items: [{ src: 'white2.jpg', flex: 6 }, { src: 'charcol1.jpg', flex: 4 }] },
-  { type: 'solo', src: 'black4.jpg', landscape: true },
-  { type: 'duo', items: [{ src: 'brown3.jpg', flex: 4 }, { src: 'brown2.jpg', flex: 6 }] },
-  { type: 'solo', src: 'brown1.jpg', landscape: true },
-  { type: 'trio', left: 'brown4.jpg', right: ['black2.jpg', 'charcol2.jpg'] },
-  { type: 'solo', src: 'brown5.jpg', landscape: true },
-  { type: 'duo', items: [{ src: 'out2.jpg', flex: 5 }, { src: 'out5.jpg', flex: 5 }] },
-  { type: 'solo', src: 'out4.jpg', landscape: true },
-  { type: 'duo', items: [{ src: 'out3.jpg', flex: 6 }, { src: 'black3.jpg', flex: 4 }] },
-  { type: 'solo', src: 'brown6.jpg', landscape: true },
-  { type: 'duo', items: [{ src: 'white3.jpg', flex: 5 }, { src: 'white4.jpg', flex: 5 }] },
-  { type: 'solo', src: 'out6.jpg', landscape: true },
-  { type: 'duo', items: [{ src: 'white1.png', flex: 5 }, { src: 'black5.png', flex: 5 }] },
-  { type: 'solo', src: 'out1.png', landscape: true },
+  { type: 'solo', src: 'black1.webp' },
+  { type: 'duo', items: [{ src: 'white2.webp', flex: 6 }, { src: 'charcol1.webp', flex: 4 }] },
+  { type: 'solo', src: 'black4.webp', landscape: true },
+  { type: 'duo', items: [{ src: 'brown3.webp', flex: 4 }, { src: 'brown2.webp', flex: 6 }] },
+  { type: 'solo', src: 'brown1.webp', landscape: true },
+  { type: 'trio', left: 'brown4.webp', right: ['black2.webp', 'charcol2.webp'] },
+  { type: 'solo', src: 'brown5.webp', landscape: true },
+  { type: 'duo', items: [{ src: 'out2.webp', flex: 5 }, { src: 'out5.webp', flex: 5 }] },
+  { type: 'solo', src: 'out4.webp', landscape: true },
+  { type: 'duo', items: [{ src: 'out3.webp', flex: 6 }, { src: 'black3.webp', flex: 4 }] },
+  { type: 'solo', src: 'brown6.webp', landscape: true },
+  { type: 'duo', items: [{ src: 'white3.webp', flex: 5 }, { src: 'white4.webp', flex: 5 }] },
+  { type: 'solo', src: 'out6.webp', landscape: true },
+  { type: 'duo', items: [{ src: 'white1.webp', flex: 5 }, { src: 'black5.webp', flex: 5 }] },
+  { type: 'solo', src: 'out1.webp', landscape: true },
 ];
 
 // Flatten for swiper order

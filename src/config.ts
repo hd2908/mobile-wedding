@@ -22,7 +22,7 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
-    photo: '/mobile-wedding/boy.jpeg',
+    photo: '/mobile-wedding/boy.webp',
     intro: '초록빛 싱그러움이 가득한 여름,\n곁에 있을 때 가장 나다워지는 사람과\n평생을 함께하기로 했습니다.\n\n시원한 나무 그늘처럼 서로에게 편안한 쉼이 되고,\n청량한 여름빛처럼 서로를 밝혀주는\n가정을 꾸려가겠습니다.\n\n기쁜 마음으로 오시어 함께 축복해 주시면\n평생 소중히 간직하겠습니다.',
     playlist: '',
   },
@@ -47,7 +47,7 @@ export const config = {
       holder: '어머니 성함',
     },
     kakaopay: '',
-    photo: '/mobile-wedding/girl.png',
+    photo: '/mobile-wedding/girl.webp',
     intro: '초록빛 싱그러움이 가득한 여름,\n곁에 있을 때 가장 나다워지는 사람과\n평생을 함께하기로 했습니다.\n\n시원한 나무 그늘처럼 서로에게 편안한 쉼이 되고,\n청량한 여름빛처럼 서로를 밝혀주는\n가정을 꾸려가겠습니다.\n\n기쁜 마음으로 오시어 함께 축복해 주시면\n평생 소중히 간직하겠습니다.',
   },
 
