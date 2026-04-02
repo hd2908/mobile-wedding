@@ -65,7 +65,7 @@ export default function Cover() {
           <motion.line
             x1="100" y1="0" x2="100" y2="200"
             stroke="#333"
-            strokeWidth="0.8"
+            strokeWidth="0.2"
             style={{ pathLength: lineProgress }}
           />
           {/* Ink drop */}
