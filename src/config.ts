@@ -95,6 +95,6 @@ export const config = {
   ],
 
   kakao: {
-    jsKey: '',
+    jsKey: 'c8bdc122c15ea375e589f513a3cb84f4',
   },
 } as const;

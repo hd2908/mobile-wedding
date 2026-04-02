@@ -45,23 +45,25 @@ export default function Share() {
       return;
     }
 
+    const shareUrl = 'https://hd2908.github.io/mobile-wedding/';
+
     Kakao.Share.sendDefault({
       objectType: 'feed',
       content: {
         title: `${groom.name} & ${bride.name} 결혼합니다`,
         description: `${wedding.dateDisplay}\n${wedding.venue}`,
-        imageUrl: '',
+        imageUrl: `${shareUrl}boy.jpeg`,
         link: {
-          mobileWebUrl: window.location.href,
-          webUrl: window.location.href,
+          mobileWebUrl: shareUrl,
+          webUrl: shareUrl,
         },
       },
       buttons: [
         {
           title: '청첩장 보기',
           link: {
-            mobileWebUrl: window.location.href,
-            webUrl: window.location.href,
+            mobileWebUrl: shareUrl,
+            webUrl: shareUrl,
           },
         },
       ],
