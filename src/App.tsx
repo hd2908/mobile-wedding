@@ -5,11 +5,9 @@ import Account from './components/Account';
 import Gallery from './components/Gallery';
 import Guestbook from './components/Guestbook';
 import Share from './components/Share';
-import PasswordGate from './components/PasswordGate';
-
 export default function App() {
   return (
-    <PasswordGate>
+    <>
       <Cover />
       <Location />
       <Menu />
@@ -17,6 +15,6 @@ export default function App() {
       <Gallery />
       <Guestbook />
       <Share />
-    </PasswordGate>
+    </>
   );
 }
