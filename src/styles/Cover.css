@@ -108,7 +108,7 @@
 
 .hero__profile-photo {
   width: 190px;
-  height: 280px;
+  height: min(280px, 38vh);
   overflow: hidden;
   margin-bottom: 24px;
 }
@@ -212,4 +212,35 @@
   font-weight: 400;
   letter-spacing: 4px;
   color: var(--color-text-light);
+}
+
+/* Small viewport (iPhone SE etc.) */
+@media (max-height: 700px) {
+  .hero__profile-label {
+    margin-bottom: 20px;
+  }
+
+  .hero__profile-photo {
+    height: 32vh;
+    margin-bottom: 16px;
+  }
+
+  .hero__profile-name {
+    font-size: 1.1rem;
+    margin-bottom: 4px;
+  }
+
+  .hero__profile-rule {
+    margin: 12px 0;
+  }
+
+  .hero__profile-intro {
+    font-size: 0.75rem;
+    line-height: 1.8;
+  }
+
+  .hero__profile-playlist {
+    margin-top: 16px;
+    padding: 8px 20px;
+  }
 }

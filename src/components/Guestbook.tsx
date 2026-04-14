@@ -65,7 +65,7 @@ export default function Guestbook() {
       })
       .subscribe();
 
-    return () => { supabase.removeChannel(channel); };
+    return () => { supabase?.removeChannel(channel); };
   }, [fetchMessages]);
 
   const handleSubmit = async (e: React.FormEvent) => {
