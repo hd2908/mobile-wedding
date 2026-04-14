@@ -39,6 +39,7 @@ export default function Guestbook() {
   const isFirstLoad = useRef(true);
 
   const fetchMessages = useCallback(async () => {
+    if (!supabase) return;
     const { data } = await supabase
       .from('guestbook')
       .select('id, name, message, created_at')
@@ -56,6 +57,7 @@ export default function Guestbook() {
   useEffect(() => {
     fetchMessages();
 
+    if (!supabase) return;
     const channel = supabase
       .channel('guestbook-changes')
       .on('postgres_changes', { event: '*', schema: 'public', table: 'guestbook' }, () => {
@@ -80,6 +82,7 @@ export default function Guestbook() {
       ip = data.ip;
     } catch { /* IP 수집 실패해도 진행 */ }
 
+    if (!supabase) return;
     const { error } = await supabase.from('guestbook').insert({
       name: name.trim(),
       message: text.trim(),
@@ -101,6 +104,7 @@ export default function Guestbook() {
     if (!deleteTarget || !deletePassword.trim()) return;
 
     const pwdHash = await hashPassword(deletePassword.trim());
+    if (!supabase) return;
     const { data } = await supabase.rpc('delete_guestbook_message', {
       msg_id: deleteTarget,
       pwd_hash: pwdHash,

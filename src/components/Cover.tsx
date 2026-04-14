@@ -71,10 +71,10 @@ export default function Cover() {
           {/* Ink drop */}
           <defs>
             <radialGradient id="inkGrad">
-              <stop offset="0%" stopColor="#0A6B2A" stopOpacity="1" />
-              <stop offset="35%" stopColor="#0F8C38" stopOpacity="0.6" />
-              <stop offset="70%" stopColor="#18AD4A" stopOpacity="0.15" />
-              <stop offset="100%" stopColor="#30CC65" stopOpacity="0" />
+              <stop offset="0%" stopColor="#00A94F" stopOpacity="1" />
+              <stop offset="35%" stopColor="#2EBD6E" stopOpacity="0.6" />
+              <stop offset="70%" stopColor="#5CD18D" stopOpacity="0.15" />
+              <stop offset="100%" stopColor="#8AE5AC" stopOpacity="0" />
             </radialGradient>
             <filter id="inkBlur">
               <feGaussianBlur stdDeviation="3" />

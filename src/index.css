@@ -1,11 +1,27 @@
+@font-face {
+  font-family: 'BookkMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Lt.woff2') format('woff2');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'BookkMyungjo';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2302@1.0/BookkMyungjo-Bd.woff2') format('woff2');
+  font-weight: 700;
+  font-display: swap;
+}
+
 :root {
   --color-bg: #ffffff;
   --color-bg-cover: #333333;
   --color-text: #333333;
-  --color-text-light: #555555;
-  --color-text-muted: #999999;
+  --color-text-light: #444444;
+  --color-text-muted: #6b6b6b;
   --color-border: #e0e0e0;
   --color-border-light: #e0e0e0;
+  --color-accent: #00A94F;
+  --font-main: 'BookkMyungjo', Georgia, 'Times New Roman', serif;
   --font-sans: 'Helvetica Neue', Helvetica, Arial, -apple-system, BlinkMacSystemFont, sans-serif;
   --font-kr: 'Apple SD Gothic Neo', 'Malgun Gothic', sans-serif;
   --max-width: 480px;
@@ -26,7 +42,7 @@ html {
 }
 
 body {
-  font-family: var(--font-sans), var(--font-kr);
+  font-family: var(--font-main), var(--font-kr);
   color: var(--color-text);
   background-color: var(--color-bg);
   line-height: 1.6;

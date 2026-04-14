@@ -60,7 +60,7 @@ async function generate() {
   const emojiSize = cellSize * 1.15;
 
   function heart(cx, cy) {
-    return `<text x="${cx}" y="${cy}" font-size="${emojiSize}" text-anchor="middle" dominant-baseline="central">❤️</text>`;
+    return `<text x="${cx}" y="${cy}" font-size="${emojiSize}" text-anchor="middle" dominant-baseline="central">💚</text>`;
   }
 
   // Draw a single finder pattern (outer + inner) with sharp square corners
@@ -91,8 +91,8 @@ async function generate() {
   // Radial gradient: red center → black edge
   svg += `<defs>`;
   svg += `<radialGradient id="grad" cx="50%" cy="50%" r="50%">`;
-  svg += `<stop offset="0%" stop-color="#e63946"/>`;
-  svg += `<stop offset="45%" stop-color="#c1121f"/>`;
+  svg += `<stop offset="0%" stop-color="#00A94F"/>`;
+  svg += `<stop offset="45%" stop-color="#008C41"/>`;
   svg += `<stop offset="100%" stop-color="#000000"/>`;
   svg += `</radialGradient>`;
   svg += `</defs>`;
