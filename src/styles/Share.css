@@ -1,7 +1,7 @@
 .share {
   width: 100%;
   max-width: var(--max-width);
-  padding: 80px 32px 120px;
+  padding: 40px 32px 120px;
   background: var(--color-bg);
   text-align: center;
 }

@@ -2,47 +2,52 @@ import { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { FreeMode, Thumbs, Keyboard } from 'swiper/modules';
+import type { Swiper as SwiperType } from 'swiper';
 import 'swiper/swiper-bundle.css';
 import '../styles/Gallery.css';
 
-const B = '/mobile-wedding/gallery/';
+const B = '/mobile-wedding/gall/';
 
-type Row =
-  | { type: 'solo'; src: string; landscape?: boolean }
-  | { type: 'duo'; items: { src: string; flex: number }[] }
-  | { type: 'trio'; left: string; right: [string, string] };
+type Photo = { src: string; landscape?: boolean };
 
-const rows: Row[] = [
-  { type: 'solo', src: 'black1.webp' },
-  { type: 'duo', items: [{ src: 'white2.webp', flex: 6 }, { src: 'charcol1.webp', flex: 4 }] },
-  { type: 'solo', src: 'black4.webp', landscape: true },
-  { type: 'duo', items: [{ src: 'brown3.webp', flex: 4 }, { src: 'brown2.webp', flex: 6 }] },
-  { type: 'solo', src: 'brown1.webp', landscape: true },
-  { type: 'trio', left: 'brown4.webp', right: ['black2.webp', 'charcol2.webp'] },
-  { type: 'solo', src: 'brown5.webp', landscape: true },
-  { type: 'duo', items: [{ src: 'out2.webp', flex: 5 }, { src: 'out5.webp', flex: 5 }] },
-  { type: 'solo', src: 'out4.webp', landscape: true },
-  { type: 'duo', items: [{ src: 'out3.webp', flex: 6 }, { src: 'black3.webp', flex: 4 }] },
-  { type: 'solo', src: 'brown6.webp', landscape: true },
-  { type: 'duo', items: [{ src: 'white3.webp', flex: 5 }, { src: 'white4.webp', flex: 5 }] },
-  { type: 'solo', src: 'out6.webp', landscape: true },
-  { type: 'duo', items: [{ src: 'white1.webp', flex: 5 }, { src: 'black5.webp', flex: 5 }] },
-  { type: 'solo', src: 'out1.webp', landscape: true },
+const images: Photo[] = [
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 003.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 004.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 005.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 006.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 007.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 008.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 009.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 010.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 011.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 012.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 013.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 014.webp', landscape: true },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 015.webp', landscape: true },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 016.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 017.webp', landscape: true },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 018.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-28 019.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 020.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 021.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 022.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 023.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 024.webp', landscape: true },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 026.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 028.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 029.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-36-29 030.webp' },
+  { src: 'KakaoTalk_Photo_2026-04-20-15-37-01.webp' },
 ];
 
-// Flatten for swiper order
-const allImages: string[] = [];
-for (const row of rows) {
-  if (row.type === 'solo') allImages.push(row.src);
-  else if (row.type === 'duo') for (const item of row.items) allImages.push(item.src);
-  else { allImages.push(row.left); for (const s of row.right) allImages.push(s); }
-}
+const src = (name: string) => B + encodeURIComponent(name);
 
 export default function Gallery() {
-  const [selected, setSelected] = useState<number | null>(null);
   const [ref, inView] = useInView({ triggerOnce: true, threshold: 0.05 });
-
-  const open = (src: string) => setSelected(allImages.indexOf(src));
+  const [thumbs, setThumbs] = useState<SwiperType | null>(null);
+  const [active, setActive] = useState(0);
+  const [lightbox, setLightbox] = useState<number | null>(null);
 
   return (
     <section className="gallery" ref={ref}>
@@ -57,83 +62,104 @@ export default function Gallery() {
       <div className="gallery__rule" />
 
       <motion.div
-        className="gallery__grid"
+        className="gallery__stage"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.2, duration: 0.6 }}
       >
-        {rows.map((row, ri) => {
-          if (row.type === 'solo') {
-            return (
-              <div
-                key={ri}
-                className={`gallery__solo${row.landscape ? ' gallery__solo--land' : ''}`}
-                onClick={() => open(row.src)}
+        <Swiper
+          className="gallery__main"
+          modules={[Thumbs, Keyboard]}
+          thumbs={{ swiper: thumbs && !thumbs.destroyed ? thumbs : null }}
+          spaceBetween={8}
+          keyboard={{ enabled: true }}
+          onSlideChange={(s) => setActive(s.activeIndex)}
+        >
+          {images.map((photo, i) => (
+            <SwiperSlide key={photo.src}>
+              <button
+                type="button"
+                className={`gallery__main-slide${photo.landscape ? ' gallery__main-slide--land' : ''}`}
+                onClick={() => setLightbox(i)}
+                aria-label={`사진 ${i + 1} 크게 보기`}
               >
-                <img src={B + row.src} alt="" loading={ri < 2 ? 'eager' : 'lazy'} />
-              </div>
-            );
-          }
-          if (row.type === 'duo') {
-            return (
-              <div key={ri} className="gallery__duo">
-                {row.items.map((item) => (
-                  <div
-                    key={item.src}
-                    className="gallery__cell"
-                    style={{ flex: item.flex }}
-                    onClick={() => open(item.src)}
-                  >
-                    <img src={B + item.src} alt="" loading={ri < 2 ? 'eager' : 'lazy'} />
-                  </div>
-                ))}
-              </div>
-            );
-          }
-          // trio
-          return (
-            <div key={ri} className="gallery__trio">
-              <div className="gallery__cell gallery__trio-main" onClick={() => open(row.left)}>
-                <img src={B + row.left} alt="" loading="lazy" />
-              </div>
-              <div className="gallery__trio-stack">
-                {row.right.map((src) => (
-                  <div key={src} className="gallery__cell" onClick={() => open(src)}>
-                    <img src={B + src} alt="" loading="lazy" />
-                  </div>
-                ))}
-              </div>
-            </div>
-          );
-        })}
+                <img
+                  src={src(photo.src)}
+                  alt=""
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                  decoding="async"
+                />
+              </button>
+            </SwiperSlide>
+          ))}
+        </Swiper>
+
+        <div className="gallery__meta">
+          <span className="gallery__counter">
+            {String(active + 1).padStart(2, '0')}
+            <span className="gallery__counter-sep"> / </span>
+            {String(images.length).padStart(2, '0')}
+          </span>
+        </div>
+
+        <Swiper
+          className="gallery__strip"
+          modules={[FreeMode, Thumbs]}
+          onSwiper={setThumbs}
+          slidesPerView={5.5}
+          spaceBetween={6}
+          freeMode
+          watchSlidesProgress
+          breakpoints={{
+            480: { slidesPerView: 6.5, spaceBetween: 6 },
+            640: { slidesPerView: 8, spaceBetween: 8 },
+          }}
+        >
+          {images.map((photo) => (
+            <SwiperSlide key={photo.src} className="gallery__thumb">
+              <img
+                src={src(photo.src)}
+                alt=""
+                loading="lazy"
+                decoding="async"
+              />
+            </SwiperSlide>
+          ))}
+        </Swiper>
       </motion.div>
 
       <AnimatePresence>
-        {selected !== null && (
+        {lightbox !== null && (
           <motion.div
             className="gallery__overlay"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            onClick={() => setSelected(null)}
+            onClick={() => setLightbox(null)}
           >
             <div className="gallery__modal" onClick={(e) => e.stopPropagation()}>
-              <button className="gallery__close" onClick={() => setSelected(null)}>
+              <button
+                className="gallery__close"
+                onClick={() => setLightbox(null)}
+                aria-label="닫기"
+              >
                 &times;
               </button>
               <Swiper
                 className="gallery__swiper"
-                initialSlide={selected}
-                onSlideChange={(s) => setSelected(s.activeIndex)}
+                modules={[Keyboard]}
+                keyboard={{ enabled: true }}
+                initialSlide={lightbox}
+                onSlideChange={(s) => setLightbox(s.activeIndex)}
               >
-                {allImages.map((src, i) => (
-                  <SwiperSlide key={i}>
-                    <img src={B + src} alt="" />
+                {images.map((photo) => (
+                  <SwiperSlide key={photo.src}>
+                    <img src={src(photo.src)} alt="" />
                   </SwiperSlide>
                 ))}
               </Swiper>
-              <p className="gallery__counter">
-                {selected + 1} / {allImages.length}
+              <p className="gallery__lightbox-counter">
+                {lightbox + 1} / {images.length}
               </p>
             </div>
           </motion.div>
