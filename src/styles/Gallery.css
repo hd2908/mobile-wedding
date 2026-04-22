@@ -30,7 +30,7 @@
 /* Main carousel — polaroid mockup */
 .gallery__main {
   width: 100%;
-  aspect-ratio: 3 / 4;
+  aspect-ratio: 4 / 5;
   background: #ffffff;
   padding: 12px 14px;
   box-sizing: border-box;
