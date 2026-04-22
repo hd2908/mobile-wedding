@@ -89,8 +89,8 @@
 }
 
 .hero__profile-photo {
-  width: 190px;
-  height: min(280px, 38vh);
+  width: 165px;
+  height: min(240px, 33vh);
   overflow: hidden;
   margin-bottom: 24px;
 }
@@ -203,7 +203,7 @@
   }
 
   .hero__profile-photo {
-    height: 32vh;
+    height: 28vh;
     margin-bottom: 16px;
   }
 
