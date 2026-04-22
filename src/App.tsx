@@ -10,7 +10,7 @@ import Share from './components/Share';
 import './styles/App.css';
 
 // Phase 0 (cover + ink drop) gets 3x scroll length; others are 1x.
-// Container height: (3 + 8) * 100dvh = 1100dvh.
+// Container height: (3 + 8) * 100svh = 1100svh.
 // scrollYProgress boundaries — phase N is active when p < BOUNDS[N].
 const BOUNDS = [3 / 11, 4 / 11, 5 / 11, 6 / 11, 7 / 11, 8 / 11, 9 / 11, 10 / 11];
 const COVER_SEGMENT = BOUNDS[0]; // phase 0's scroll range end
