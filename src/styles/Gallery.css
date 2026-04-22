@@ -101,20 +101,19 @@
   position: absolute;
   left: 0;
   right: 0;
-  bottom: 18px;
+  bottom: 16px;
   text-align: center;
-  font-family: 'Caveat', 'Homemade Apple', 'Segoe Script', cursive;
-  font-style: italic;
-  font-size: 1.05rem;
+  font-family: 'Nanum Pen Script', cursive;
+  font-size: 1.35rem;
   letter-spacing: 0.5px;
   color: #8a7a66;
-  opacity: 0.7;
+  opacity: 0.75;
   pointer-events: none;
 }
 
 .gallery__main-slide--land .gallery__main-caption {
-  bottom: 14px;
-  font-size: 0.95rem;
+  bottom: 12px;
+  font-size: 1.2rem;
 }
 
 /* Meta row */

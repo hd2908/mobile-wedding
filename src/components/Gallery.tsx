@@ -91,7 +91,7 @@ export default function Gallery() {
                   decoding="async"
                 />
                 <span className="gallery__main-caption" aria-hidden>
-                  tap to zoom
+                  눌러서 크게 보기
                 </span>
               </button>
             </SwiperSlide>
