@@ -61,6 +61,7 @@ export default function Gallery() {
         갤러리
       </motion.p>
       <div className="gallery__rule" />
+      <p className="gallery__hint">사진을 누르면 크게 볼 수 있어요</p>
 
       <motion.div
         className="gallery__stage"
@@ -90,9 +91,6 @@ export default function Gallery() {
                   loading={i < 2 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
-                <span className="gallery__main-caption" aria-hidden>
-                  눌러서 크게 보기
-                </span>
               </button>
             </SwiperSlide>
           ))}

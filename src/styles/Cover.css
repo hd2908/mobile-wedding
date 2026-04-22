@@ -1,3 +1,22 @@
+/* Scroll space — 5 screens worth for cover → groom → bride transition */
+/* Use svh so in-app browser chrome toggles don't resize the scroll track */
+.hero {
+  width: 100%;
+  max-width: var(--max-width);
+  height: 500svh;
+  position: relative;
+}
+
+/* Sticky viewport stays fixed while user scrolls through the 3 layers */
+.hero__sticky {
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  height: 100dvh;
+  overflow: hidden;
+  background: var(--color-bg);
+}
+
 /* SVG background — centered, behind everything */
 .hero__svg {
   position: absolute;

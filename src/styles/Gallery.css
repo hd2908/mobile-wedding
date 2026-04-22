@@ -19,7 +19,15 @@
   width: 40px;
   height: 1px;
   background: var(--color-border);
-  margin: 0 auto 40px;
+  margin: 0 auto 18px;
+}
+
+.gallery__hint {
+  font-size: 0.72rem;
+  letter-spacing: 1px;
+  color: var(--color-text-light, #9a9287);
+  margin: 0 auto 32px;
+  opacity: 0.85;
 }
 
 /* Stage */
@@ -55,10 +63,10 @@
   display: flex;
   flex-direction: column;
   /* Portrait polaroid — tall frame with thick bottom caption strip */
-  width: 78%;
-  max-width: 320px;
+  width: 88%;
+  max-width: 360px;
   aspect-ratio: 4 / 5;
-  padding: 14px 14px 56px;
+  padding: 16px 16px 60px;
   background: #fbfaf5;
   box-shadow: 0 0 0 rgba(60, 45, 25, 0);
   cursor: zoom-in;
@@ -74,10 +82,10 @@
 
 /* Landscape polaroid — wide frame, slightly smaller bottom strip */
 .gallery__main-slide--land {
-  width: 92%;
-  max-width: 420px;
+  width: 96%;
+  max-width: 460px;
   aspect-ratio: 5 / 4;
-  padding: 14px 14px 46px;
+  padding: 16px 16px 50px;
 }
 
 .gallery__main-slide::after {
@@ -95,25 +103,6 @@
   min-height: 0;
   object-fit: cover;
   display: block;
-}
-
-.gallery__main-caption {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 16px;
-  text-align: center;
-  font-family: 'Nanum Pen Script', cursive;
-  font-size: 1.35rem;
-  letter-spacing: 0.5px;
-  color: #8a7a66;
-  opacity: 0.75;
-  pointer-events: none;
-}
-
-.gallery__main-slide--land .gallery__main-caption {
-  bottom: 12px;
-  font-size: 1.2rem;
 }
 
 /* Meta row */
