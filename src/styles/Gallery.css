@@ -97,6 +97,26 @@
   display: block;
 }
 
+.gallery__main-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 18px;
+  text-align: center;
+  font-family: 'Caveat', 'Homemade Apple', 'Segoe Script', cursive;
+  font-style: italic;
+  font-size: 1.05rem;
+  letter-spacing: 0.5px;
+  color: #8a7a66;
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.gallery__main-slide--land .gallery__main-caption {
+  bottom: 14px;
+  font-size: 0.95rem;
+}
+
 /* Meta row */
 .gallery__meta {
   display: flex;

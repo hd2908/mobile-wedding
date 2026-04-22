@@ -14,26 +14,26 @@ type Photo = { src: string; landscape?: boolean };
 const images: Photo[] = [
   { src: 'gall_image_00.webp' },
   { src: 'gall_image_01.webp' },
-  { src: 'gall_image_02.webp' },
+  { src: 'gall_image_02.webp', landscape: true },
   { src: 'gall_image_03.webp' },
   { src: 'gall_image_04.webp' },
   { src: 'gall_image_05.webp' },
   { src: 'gall_image_06.webp' },
-  { src: 'gall_image_07.webp' },
+  { src: 'gall_image_07.webp', landscape: true },
   { src: 'gall_image_08.webp' },
   { src: 'gall_image_09.webp' },
-  { src: 'gall_image_10.webp' },
+  { src: 'gall_image_10.webp', landscape: true },
   { src: 'gall_image_11.webp', landscape: true },
-  { src: 'gall_image_12.webp', landscape: true },
+  { src: 'gall_image_12.webp' },
   { src: 'gall_image_13.webp' },
-  { src: 'gall_image_14.webp', landscape: true },
+  { src: 'gall_image_14.webp' },
   { src: 'gall_image_15.webp' },
   { src: 'gall_image_16.webp' },
   { src: 'gall_image_17.webp' },
   { src: 'gall_image_18.webp' },
-  { src: 'gall_image_19.webp' },
-  { src: 'gall_image_20.webp' },
-  { src: 'gall_image_21.webp', landscape: true },
+  { src: 'gall_image_19.webp', landscape: true },
+  { src: 'gall_image_20.webp', landscape: true },
+  { src: 'gall_image_21.webp' },
   { src: 'gall_image_22.webp' },
   { src: 'gall_image_23.webp' },
   { src: 'gall_image_24.webp' },
@@ -90,6 +90,9 @@ export default function Gallery() {
                   loading={i < 2 ? 'eager' : 'lazy'}
                   decoding="async"
                 />
+                <span className="gallery__main-caption" aria-hidden>
+                  tap to zoom
+                </span>
               </button>
             </SwiperSlide>
           ))}
