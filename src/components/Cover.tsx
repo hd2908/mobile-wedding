@@ -154,19 +154,6 @@ export default function Cover() {
                 <span key={i}>{line}<br /></span>
               ))}
             </p>
-            {groom.playlist && (
-              <a
-                href={groom.playlist}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero__profile-playlist"
-              >
-                신랑&신부가 직접 고른 플레이리스트
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
-                </svg>
-              </a>
-            )}
           </div>
         </motion.div>
 
@@ -191,19 +178,6 @@ export default function Cover() {
                 <span key={i}>{line}<br /></span>
               ))}
             </p>
-            {bride.playlist && (
-              <a
-                href={bride.playlist}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hero__profile-playlist"
-              >
-                신랑&신부가 직접 고른 플레이리스트
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
-                  <path d="M2 6h8M7 3l3 3-3 3" stroke="currentColor" strokeWidth="1" />
-                </svg>
-              </a>
-            )}
           </div>
         </motion.div>
 

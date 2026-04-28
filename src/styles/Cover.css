@@ -171,25 +171,6 @@
   max-width: 300px;
 }
 
-.hero__profile-playlist {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 24px;
-  padding: 10px 24px;
-  border: 1px solid var(--color-border);
-  font-size: 0.7rem;
-  font-weight: 400;
-  letter-spacing: 1px;
-  color: var(--color-text);
-  transition: all 0.3s ease;
-}
-
-.hero__profile-playlist:hover {
-  background: var(--color-text);
-  color: var(--color-bg);
-}
-
 /* Dim overlay */
 .hero__dim {
   position: absolute;
@@ -238,10 +219,5 @@
   .hero__profile-intro {
     font-size: 0.75rem;
     line-height: 1.8;
-  }
-
-  .hero__profile-playlist {
-    margin-top: 16px;
-    padding: 8px 20px;
   }
 }
