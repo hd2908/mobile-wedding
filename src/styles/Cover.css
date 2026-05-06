@@ -109,7 +109,7 @@
 
 .hero__profile-photo {
   width: 165px;
-  height: min(240px, 33vh);
+  height: 33vh;
   overflow: hidden;
   margin-bottom: 24px;
 }
