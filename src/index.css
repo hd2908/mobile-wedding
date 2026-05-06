@@ -48,13 +48,15 @@ body {
   line-height: 1.6;
   overflow-x: hidden;
   margin: 0;
+  /* Prevent iOS rubber-band scroll from interacting with sticky layers */
+  overscroll-behavior-y: none;
 }
 
 #root {
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-height: 100vh;
+  min-height: 100svh;
 }
 
 img {

@@ -211,6 +211,6 @@
 
 .gallery__swiper .swiper-slide img {
   width: 100%;
-  max-height: 80vh;
+  max-height: 80svh;
   object-fit: contain;
 }

@@ -7,12 +7,12 @@
   position: relative;
 }
 
-/* Sticky viewport stays fixed while user scrolls through the 3 layers */
+/* Sticky viewport — use svh so the address-bar toggle on mobile browsers
+   does not resize this container and jitter the layered content. */
 .hero__sticky {
   position: sticky;
   top: 0;
-  height: 100vh;
-  height: 100dvh;
+  height: 100svh;
   overflow: hidden;
   background: var(--color-bg);
 }
@@ -109,7 +109,7 @@
 
 .hero__profile-photo {
   width: 165px;
-  height: min(240px, 33vh);
+  height: min(240px, 33svh);
   overflow: hidden;
   margin-bottom: 24px;
 }
@@ -222,7 +222,7 @@
   }
 
   .hero__profile-photo {
-    height: 28vh;
+    height: 28svh;
     margin-bottom: 16px;
   }
 
