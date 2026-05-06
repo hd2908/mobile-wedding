@@ -1,15 +1,18 @@
 import { useState, useEffect, useRef } from 'react';
 import { motion, useScroll, useTransform, AnimatePresence } from 'framer-motion';
 import { config } from '../config';
+import { useScrollContainer } from '../scroll-context';
 import '../styles/Cover.css';
 
 export default function Cover() {
   const { groom, bride, wedding } = config;
   const [showDim, setShowDim] = useState(true);
   const heroRef = useRef<HTMLDivElement>(null);
+  const containerRef = useScrollContainer();
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
+    container: containerRef ?? undefined,
     offset: ['start start', 'end end'],
   });
 
@@ -43,12 +46,14 @@ export default function Cover() {
   });
 
   useEffect(() => {
+    const el = containerRef?.current;
+    if (!el) return;
     const handleScroll = () => {
-      if (window.scrollY > 10) setShowDim(false);
+      if (el.scrollTop > 10) setShowDim(false);
     };
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+    el.addEventListener('scroll', handleScroll, { passive: true });
+    return () => el.removeEventListener('scroll', handleScroll);
+  }, [containerRef]);
 
   useEffect(() => {
     if (!import.meta.env.DEV) return;
@@ -60,8 +65,9 @@ export default function Cover() {
     };
     let lastPhase = phaseOf(scrollYProgress.get());
     return scrollYProgress.on('change', (p) => {
-      const vh = window.innerHeight;
-      const scrollY = window.scrollY;
+      const containerEl = containerRef?.current;
+      const vh = containerEl?.clientHeight ?? window.innerHeight;
+      const scrollY = containerEl?.scrollTop ?? window.scrollY;
       const heroEl = heroRef.current;
       const heroTop = heroEl?.getBoundingClientRect().top ?? 0;
       const heroH = heroEl?.offsetHeight ?? 0;
@@ -77,7 +83,7 @@ export default function Cover() {
         lastPhase = next;
       }
     });
-  }, [scrollYProgress]);
+  }, [scrollYProgress, containerRef]);
 
   return (
     <div className="hero" ref={heroRef}>
