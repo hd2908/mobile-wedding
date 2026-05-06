@@ -49,14 +49,18 @@ export default function Menu() {
 
       <div className="menu__rule" />
 
-      <motion.p
+      <motion.div
         className="menu__notice"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.6, duration: 0.8 }}
       >
-        식권은 현장에서 선택해주세요
-      </motion.p>
+        <p>식권은 현장에서 선택해주세요.</p>
+        <p className="menu__notice-sub">
+          양식과 중식 식당이 분리되어 있으니<br />
+          일행분들과 같은 메뉴를 선택하시는 것을 권해드립니다.
+        </p>
+      </motion.div>
     </section>
   );
 }

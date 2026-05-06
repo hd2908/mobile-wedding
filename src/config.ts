@@ -3,8 +3,8 @@
 export const config = {
   groom: {
     name: "임희도",
-    father: "아버지 성함",
-    mother: "어머니 성함",
+    father: "임양현",
+    mother: "변혜남",
     phone: "010-0000-0000",
     account: {
       bank: "우리",
@@ -12,44 +12,48 @@ export const config = {
       holder: "임희도",
     },
     fatherAccount: {
-      bank: "은행명",
-      number: "000-000-000000",
-      holder: "아버지 성함",
+      bank: "우체국",
+      number: "102723-02-117756",
+      holder: "임양현",
     },
     motherAccount: {
-      bank: "은행명",
-      number: "000-000-000000",
-      holder: "어머니 성함",
+      bank: "농협",
+      number: "352-0971-3579-73",
+      holder: "변혜남",
     },
-    kakaopay: "https://qr.kakaopay.com/Ej8XpEZuH",
+    kakaopay: "",
     photo: "/mobile-wedding/boy.webp",
     intro:
       "초록빛 싱그러움이 가득한 여름,\n곁에 있을 때 가장 나다워지는 사람과\n평생을 함께하기로 했습니다.\n\n시원한 나무 그늘처럼 서로에게 편안한 쉼이 되고,\n청량한 여름빛처럼 서로를 밝혀주는\n가정을 꾸려가겠습니다.\n\n기쁜 마음으로 오시어 함께 축복해 주시면\n평생 소중히 간직하겠습니다.",
+    playlist:
+      "https://youtube.com/playlist?list=PL9fjdW74GSMsD9_gs4-A8r38qh36eaWlh&si=LJUlF3BN8jAh6lRR",
   },
   bride: {
     name: "임찬희",
-    father: "아버지 성함",
-    mother: "어머니 성함",
+    father: "임경주",
+    mother: "김영화",
     phone: "010-0000-0000",
     account: {
-      bank: "은행명",
-      number: "000-000-000000",
+      bank: "새마을금고",
+      number: "9002-1688-7331-9",
       holder: "임찬희",
     },
     fatherAccount: {
-      bank: "은행명",
-      number: "000-000-000000",
-      holder: "아버지 성함",
+      bank: "국민은행",
+      number: "528101-01-08002",
+      holder: "임경주",
     },
     motherAccount: {
-      bank: "은행명",
-      number: "000-000-000000",
-      holder: "어머니 성함",
+      bank: "국민은행",
+      number: "087-24-0082-200",
+      holder: "김영화",
     },
     kakaopay: "",
     photo: "/mobile-wedding/girl.webp",
     intro:
       "초록빛 싱그러움이 가득한 여름,\n곁에 있을 때 가장 나다워지는 사람과\n평생을 함께하기로 했습니다.\n\n시원한 나무 그늘처럼 서로에게 편안한 쉼이 되고,\n청량한 여름빛처럼 서로를 밝혀주는\n가정을 꾸려가겠습니다.\n\n기쁜 마음으로 오시어 함께 축복해 주시면\n평생 소중히 간직하겠습니다.",
+    playlist:
+      "https://youtube.com/playlist?list=PL9fjdW74GSMsD9_gs4-A8r38qh36eaWlh&si=LJUlF3BN8jAh6lRR",
   },
 
   wedding: {
