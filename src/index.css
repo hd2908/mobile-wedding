@@ -73,6 +73,12 @@ body {
   overscroll-behavior-y: none;
 }
 
+/* Direct children must keep their declared heights — without this the flex
+   container would shrink them (e.g. hero's 500svh) to fit, killing scroll. */
+.app > * {
+  flex-shrink: 0;
+}
+
 img {
   max-width: 100%;
   display: block;
