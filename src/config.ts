@@ -40,7 +40,7 @@ export const config = {
     },
     fatherAccount: {
       bank: "국민은행",
-      number: "528101-01-08002",
+      number: "528101-01-080021",
       holder: "임경주",
     },
     motherAccount: {
