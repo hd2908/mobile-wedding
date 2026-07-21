@@ -7,8 +7,8 @@ export const config = {
     mother: "변혜남",
     phone: "010-0000-0000",
     account: {
-      bank: "우리",
-      number: "1002-657-836795",
+      bank: "하나",
+      number: "239-910535-20707",
       holder: "임희도",
     },
     fatherAccount: {
